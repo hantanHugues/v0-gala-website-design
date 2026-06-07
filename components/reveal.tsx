@@ -36,6 +36,7 @@ export function Reveal({
 
   return (
     <div
+      suppressHydrationWarning
       ref={ref as React.RefObject<HTMLDivElement>}
       className={`${variantClass[variant]} ${inView ? "reveal-visible" : ""} ${className}`}
       style={{ transitionDelay: delay ? `${delay}ms` : undefined, ...style }}
