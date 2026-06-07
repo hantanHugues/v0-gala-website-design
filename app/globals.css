@@ -286,6 +286,33 @@ body {
   animation: float-slow 6s ease-in-out infinite;
 }
 
+/* ============================================
+   SCROLL REVEAL — class-based, CSS-driven
+   ============================================ */
+
+/* Base hidden state for all reveal variants */
+.reveal-fade-up,
+.reveal-fade-in,
+.reveal-fade-left,
+.reveal-fade-right {
+  opacity: 0;
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-fade-up    { transform: translateY(40px); }
+.reveal-fade-in    { transform: translateY(0px); }
+.reveal-fade-left  { transform: translateX(-40px); }
+.reveal-fade-right { transform: translateX(40px); }
+
+/* Visible state — triggered by JS adding .reveal-visible */
+.reveal-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .silk,
   .silk-2,
@@ -293,4 +320,67 @@ body {
   .animate-float-slow {
     animation: none;
   }
+
+  /* Skip all reveal transitions for motion-sensitive users */
+  .reveal-fade-up,
+  .reveal-fade-in,
+  .reveal-fade-left,
+  .reveal-fade-right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
+
+/* ============================================
+   HERITAGE — lueurs flottantes
+   ============================================ */
+
+/* Orbe 1 — bleu royal : traverse de gauche à droite en arc */
+@keyframes orb-drift-1 {
+  0%   { transform: translate(-15vw, -8vh); }
+  25%  { transform: translate(5vw,   12vh); }
+  50%  { transform: translate(22vw,  -4vh); }
+  75%  { transform: translate(8vw,  -18vh); }
+  100% { transform: translate(-15vw, -8vh); }
+}
+.heritage-orb-1 {
+  top: 50%;
+  left: 30%;
+  animation: orb-drift-1 22s ease-in-out infinite;
+}
+
+/* Orbe 2 — or : arc diagonal du coin bas-droit vers haut-gauche */
+@keyframes orb-drift-2 {
+  0%   { transform: translate(18vw,  15vh); }
+  33%  { transform: translate(-5vw,   5vh); }
+  66%  { transform: translate(-18vw, -12vh); }
+  100% { transform: translate(18vw,  15vh); }
+}
+.heritage-orb-2 {
+  top: 40%;
+  left: 55%;
+  animation: orb-drift-2 28s ease-in-out infinite;
+}
+
+/* Orbe 3 — bleu profond : lent, grand arc autour du centre */
+@keyframes orb-drift-3 {
+  0%   { transform: translate(-10vw,  20vh); }
+  20%  { transform: translate(12vw,   10vh); }
+  40%  { transform: translate(25vw,  -8vh); }
+  60%  { transform: translate(5vw,  -22vh); }
+  80%  { transform: translate(-20vw, -5vh); }
+  100% { transform: translate(-10vw,  20vh); }
+}
+.heritage-orb-3 {
+  top: 50%;
+  left: 45%;
+  animation: orb-drift-3 35s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heritage-orb-1,
+  .heritage-orb-2,
+  .heritage-orb-3 { animation: none; }
+}
+

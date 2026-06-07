@@ -33,7 +33,8 @@ export function SiteNav() {
       )}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6">
-        <a href="#" className="flex flex-col leading-none">
+        {/* Logo — centered on mobile via absolute trick */}
+        <a href="#" className="flex flex-col leading-none md:leading-none">
           <span className="font-heading text-lg font-bold tracking-[0.2em] text-cream">
             AIESEC
           </span>
@@ -62,39 +63,67 @@ export function SiteNav() {
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="text-cream md:hidden"
-          aria-label="Menu"
+          className="relative z-10 text-cream md:hidden"
+          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
         >
-          {open ? <X className="size-6" /> : <Menu className="size-6" />}
+          <span
+            className={cn(
+              "absolute inset-0 flex items-center justify-center transition-all duration-300",
+              open ? "opacity-100 rotate-0" : "opacity-0 rotate-90",
+            )}
+          >
+            <X className="size-5" />
+          </span>
+          <span
+            className={cn(
+              "flex items-center justify-center transition-all duration-300",
+              open ? "opacity-0 -rotate-90" : "opacity-100 rotate-0",
+            )}
+          >
+            <Menu className="size-5" />
+          </span>
         </button>
       </nav>
 
-      {open && (
-        <div className="border-t border-border bg-background/95 px-6 py-6 md:hidden">
-          <ul className="flex flex-col gap-5">
+      {/* Mobile menu — slide down with CSS transition */}
+      <div
+        className={cn(
+          "overflow-hidden transition-all duration-500 ease-in-out md:hidden",
+          open ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
+        )}
+      >
+        <div className="border-t border-border/50 bg-background/95 px-6 py-6 backdrop-blur-md">
+          {/* gold ornament */}
+          <div className="mb-5 flex items-center gap-3">
+            <span className="h-px flex-1 bg-gold/20" />
+            <span className="text-[0.55rem] uppercase tracking-[0.4em] text-gold/60">Menu</span>
+            <span className="h-px flex-1 bg-gold/20" />
+          </div>
+
+          <ul className="flex flex-col gap-1">
             {links.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="text-sm uppercase tracking-[0.18em] text-cream/80"
+                  className="flex items-center justify-between py-3 text-sm uppercase tracking-[0.18em] text-cream/80 transition-colors hover:text-gold"
                 >
                   {l.label}
+                  <span className="h-px w-6 bg-gold/30" />
                 </a>
               </li>
             ))}
-            <li>
-              <a
-                href="#invitation"
-                onClick={() => setOpen(false)}
-                className="inline-block border border-gold px-5 py-2.5 text-xs uppercase tracking-[0.18em] text-gold"
-              >
-                Demander une invitation
-              </a>
-            </li>
           </ul>
+
+          <a
+            href="#invitation"
+            onClick={() => setOpen(false)}
+            className="mt-6 flex w-full items-center justify-center border border-gold py-3 text-xs uppercase tracking-[0.18em] text-gold transition-colors hover:bg-gold/10"
+          >
+            Demander une invitation
+          </a>
         </div>
-      )}
+      </div>
     </header>
   )
 }
