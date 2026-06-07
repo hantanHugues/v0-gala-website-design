@@ -183,21 +183,198 @@ body {
     );
   }
 
-  /* Light section — ivory/champagne theme with royal + gold accents */
+  /* ── Section tonal system — approche "température" ─────────
+     Toutes les sections restent très sombres (0.09–0.18).
+     La différenciation se fait par la TEMPÉRATURE (chaud/froid),
+     jamais par un éclair de luminosité agressif.
+     Delta lightness max : 0.08 — imperceptible en transition.
+
+     Froid (hue 252-265) = navy, sophistiqué, réservé
+     Chaud (hue 70-85)   = ambre doré, chaleureux, raffiné
+  ─────────────────────────────────────────────────────────── */
+
+  /* About — chaud ambre sombre : respiration après le navy hero */
+  .s-about {
+    --card:             oklch(0.19 0.018 78);
+    --card-foreground:  oklch(0.93 0.012 85);
+    --border:           oklch(0.78 0.12 85 / 14%);
+    --muted-foreground: oklch(0.65 0.025 80);
+    --gold:             oklch(0.78 0.12 85);
+    --royal:            oklch(0.62 0.18 252);
+    --cream:            oklch(0.93 0.012 85);
+    --foreground:       oklch(0.93 0.012 85);
+    background-color:   oklch(0.16 0.018 78);
+    color:              oklch(0.93 0.012 85);
+  }
+
+  /* Program — ambre chaud légèrement plus lumineux, toujours sombre */
+  .s-program {
+    --card:             oklch(0.22 0.020 70);
+    --card-foreground:  oklch(0.93 0.012 85);
+    --border:           oklch(0.78 0.12 85 / 14%);
+    --muted-foreground: oklch(0.66 0.025 82);
+    --gold:             oklch(0.80 0.13 85);
+    --cream:            oklch(0.93 0.012 85);
+    --foreground:       oklch(0.93 0.012 85);
+    background-color:   oklch(0.19 0.030 65);
+    color:              oklch(0.93 0.012 85);
+  }
+
+  /* Invitation — navy profond, plus froid que about/program */
+  .s-invitation {
+    --card:             oklch(0.16 0.025 262);
+    --card-foreground:  oklch(0.93 0.012 85);
+    --border:           oklch(0.78 0.12 85 / 12%);
+    --muted-foreground: oklch(0.65 0.02 85);
+    --gold:             oklch(0.78 0.12 85);
+    --royal:            oklch(0.58 0.2 252);
+    --cream:            oklch(0.93 0.012 85);
+    --foreground:       oklch(0.93 0.012 85);
+    background-color:   oklch(0.12 0.035 262);
+    color:              oklch(0.93 0.012 85);
+  }
+
+  /* Gallery — noir quasi-pur, crée le drame pour les photos */
+  .s-gallery {
+    background-color: oklch(0.09 0.020 265);
+    background-image:
+      radial-gradient(ellipse 55% 45% at 15% 60%, oklch(0.78 0.12 85 / 0.04) 0%, transparent 60%),
+      radial-gradient(ellipse 45% 55% at 85% 35%, oklch(0.58 0.20 252 / 0.05) 0%, transparent 60%);
+  }
+
+  /* Backward compat */
   .section-light {
-    --background: oklch(0.97 0.008 85);
-    --foreground: oklch(0.22 0.03 265);
-    --card: oklch(0.99 0.005 85);
-    --card-foreground: oklch(0.22 0.03 265);
-    --border: oklch(0.55 0.05 265 / 14%);
-    --muted-foreground: oklch(0.45 0.04 265);
-    --gold: oklch(0.62 0.12 80);
-    --royal: oklch(0.5 0.2 255);
-    --cream: oklch(0.22 0.03 265);
-    background-color: var(--background);
-    color: var(--foreground);
+    --card:             oklch(0.19 0.018 78);
+    --card-foreground:  oklch(0.93 0.012 85);
+    --border:           oklch(0.78 0.12 85 / 14%);
+    --muted-foreground: oklch(0.65 0.025 80);
+    --gold:             oklch(0.78 0.12 85);
+    --royal:            oklch(0.62 0.18 252);
+    --cream:            oklch(0.93 0.012 85);
+    --foreground:       oklch(0.93 0.012 85);
+    background-color:   oklch(0.16 0.018 78);
+    color:              oklch(0.93 0.012 85);
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE — prefers-color-scheme: light
+   Appliqué quand le système de l'appareil est en mode clair.
+   Les sélecteurs html.dark ci-dessous prennent le dessus
+   si le script détecte dark (specificity plus élevée).
+══════════════════════════════════════════════════════════════ */
+
+/* Heritage bg — dark par défaut */
+.heritage-bg {
+  background-color: oklch(0.13 0.02 265);
+}
+
+@media (prefers-color-scheme: light) {
+
+  /* ── Variables globales clair ─────────────────────────────── */
+  :root {
+    --background:           oklch(0.95 0.008 85);
+    --foreground:           oklch(0.20 0.01 0);    /* #222222 */
+    --card:                 oklch(0.97 0.005 85);
+    --card-foreground:      oklch(0.20 0.01 0);
+    --popover:              oklch(0.97 0.006 85);
+    --popover-foreground:   oklch(0.20 0.01 0);
+    --muted:                oklch(0.90 0.010 85);
+    --muted-foreground:     oklch(0.42 0.03 265);
+    --secondary:            oklch(0.90 0.010 85);
+    --secondary-foreground: oklch(0.20 0.01 0);
+    --border:               oklch(0.40 0.04 265 / 20%);
+    --input:                oklch(0.40 0.04 265 / 15%);
+    --ring:                 oklch(0.56 0.22 258);
+    --gold:                 oklch(0.72 0.14 82);   /* #D4AF37 */
+    --royal:                oklch(0.56 0.22 258);  /* #037EF3 */
+    --cream:                oklch(0.20 0.01 0);    /* #222222 */
+    --primary:              oklch(0.56 0.22 258);
+    --primary-foreground:   oklch(0.98 0.005 85);
+  }
+
+  /* ── Heritage ─────────────────────────────────────────────── */
+  .heritage-bg {
+    background-color: oklch(0.88 0.015 255);
+  }
+
+  /* ── About — ivoire chaud ─────────────────────────────────── */
+  .s-about {
+    background-color:   oklch(0.91 0.010 85);
+    color:              oklch(0.16 0.03 265);
+    --foreground:       oklch(0.16 0.03 265);
+    --card:             oklch(0.93 0.006 85);
+    --card-foreground:  oklch(0.16 0.03 265);
+    --cream:            oklch(0.16 0.03 265);
+    --muted-foreground: oklch(0.38 0.04 265);
+    --gold:             oklch(0.72 0.14 82);
+    --royal:            oklch(0.56 0.22 258);
+    --border:           oklch(0.40 0.05 265 / 20%);
+  }
+
+  /* ── Gallery — crème lumineuse ───────────────────────────── */
+  .s-gallery {
+    background-color: oklch(0.93 0.006 85);
+    background-image:
+      radial-gradient(ellipse 55% 45% at 15% 60%, oklch(0.52 0.13 78 / 0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 45% 55% at 85% 35%, oklch(0.42 0.20 255 / 0.07) 0%, transparent 60%);
+    --foreground:       oklch(0.16 0.03 265);
+    --cream:            oklch(0.16 0.03 265);
+    --muted-foreground: oklch(0.38 0.04 265);
+    --gold:             oklch(0.72 0.14 82);
+    --royal:            oklch(0.56 0.22 258);
+  }
+
+  /* ── Program — ardoise douce ─────────────────────────────── */
+  .s-program {
+    background-color:   oklch(0.89 0.012 255);
+    color:              oklch(0.16 0.03 265);
+    --foreground:       oklch(0.16 0.03 265);
+    --card:             oklch(0.93 0.008 85);
+    --card-foreground:  oklch(0.16 0.03 265);
+    --cream:            oklch(0.16 0.03 265);
+    --muted-foreground: oklch(0.38 0.04 265);
+    --gold:             oklch(0.72 0.14 82);
+    --royal:            oklch(0.56 0.22 258);
+    --border:           oklch(0.40 0.05 265 / 22%);
+  }
+
+  /* ── Invitation — ivoire neutre ──────────────────────────── */
+  .s-invitation {
+    background-color:   oklch(0.92 0.008 85);
+    color:              oklch(0.16 0.03 265);
+    --foreground:       oklch(0.16 0.03 265);
+    --card:             oklch(0.96 0.005 85);
+    --card-foreground:  oklch(0.16 0.03 265);
+    --cream:            oklch(0.16 0.03 265);
+    --muted-foreground: oklch(0.38 0.04 265);
+    --gold:             oklch(0.72 0.14 82);
+    --royal:            oklch(0.56 0.22 258);
+  }
+
+  /* ── Section-light compat ────────────────────────────────── */
+  .section-light {
+    background-color:   oklch(0.91 0.010 85);
+    color:              oklch(0.16 0.03 265);
+    --foreground:       oklch(0.16 0.03 265);
+    --cream:            oklch(0.16 0.03 265);
+    --gold:             oklch(0.72 0.14 82);
+    --royal:            oklch(0.56 0.22 258);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DARK CLASS OVERRIDE — html.dark (plus haute spécificité)
+   Force le dark même si le système est en mode clair.
+   Reprend les valeurs sombres avec sélecteur plus spécifique.
+══════════════════════════════════════════════════════════════ */
+
+html.dark .heritage-bg   { background-color: oklch(0.13 0.02 265) !important; }
+html.dark .s-about       { background-color: oklch(0.16 0.018 78) !important; --foreground: oklch(0.93 0.012 85); --cream: oklch(0.93 0.012 85); color: oklch(0.93 0.012 85); }
+html.dark .s-gallery     { background-color: oklch(0.09 0.020 265) !important; --foreground: oklch(0.93 0.012 85); --cream: oklch(0.93 0.012 85); }
+html.dark .s-program     { background-color: oklch(0.19 0.030 65) !important; --foreground: oklch(0.93 0.012 85); --cream: oklch(0.93 0.012 85); color: oklch(0.93 0.012 85); }
+html.dark .s-invitation  { background-color: oklch(0.12 0.035 262) !important; --foreground: oklch(0.93 0.012 85); --cream: oklch(0.93 0.012 85); color: oklch(0.93 0.012 85); }
+
 
 /* ---------- Silk / aurora hero animation ---------- */
 .silk {

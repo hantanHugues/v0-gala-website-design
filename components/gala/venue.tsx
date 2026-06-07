@@ -15,8 +15,8 @@ export function Venue() {
         <Reveal variant="fade-right" threshold={0.05}>
           <div className="relative min-h-[260px] sm:min-h-[420px] lg:min-h-full">
             <img
-              src="/images/gala-venue.png"
-              alt="Entrée prestigieuse du lieu du gala à Cotonou"
+              src="/images/galerie-7-6-1-490x325.jpg"
+              alt="Salle du gala à Cotonou"
               className="size-full object-cover"
             />
             {/* gradient adapté mobile (to-b) vs desktop (to-r) */}
@@ -35,8 +35,8 @@ export function Venue() {
         </Reveal>
 
         <Reveal variant="fade-left" threshold={0.05} delay={100}>
-          <div className="flex flex-col justify-center bg-card px-6 py-14 sm:px-16">
-            <p className="font-script text-2xl text-gold sm:text-3xl">
+          <div suppressHydrationWarning className="flex flex-col justify-center bg-card px-6 py-14 sm:px-16">
+            <p className="font-script text-4xl text-gold sm:text-5xl">
               Un cadre d&apos;exception
             </p>
             <h2 className="mt-2 font-heading text-3xl font-bold text-cream sm:text-5xl text-balance">
@@ -75,7 +75,7 @@ export function Venue() {
                   <Reveal key={d.label} variant="fade-up">
                     <div className="flex items-center gap-5 bg-card px-6 py-5">
                       <Icon className="size-6 text-royal" strokeWidth={1.4} />
-                      <div>
+                      <div suppressHydrationWarning>
                         <p className="text-[0.65rem] uppercase tracking-[0.25em] text-cream/50">
                           {d.label}
                         </p>

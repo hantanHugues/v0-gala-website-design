@@ -35,9 +35,26 @@ export default function RootLayout({
     <html
       lang="fr"
       suppressHydrationWarning
-      className={`${fontHeading.variable} ${fontScript.variable} ${fontSans.variable} dark`}
+      className={`${fontHeading.variable} ${fontScript.variable} ${fontSans.variable}`}
     >
-      <body className="antialiased bg-background font-sans">{children}</body>
+      <body className="antialiased bg-background font-sans">
+        {/* Script de détection thème — dans body pour exécution fiable en Next.js App Router */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){
+  try{
+    var mq=window.matchMedia('(prefers-color-scheme: dark)');
+    if(mq.matches)document.documentElement.classList.add('dark');
+    mq.addEventListener('change',function(e){
+      if(e.matches)document.documentElement.classList.add('dark');
+      else document.documentElement.classList.remove('dark');
+    });
+  }catch(e){}
+})();`,
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

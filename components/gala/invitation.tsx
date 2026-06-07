@@ -2,8 +2,15 @@
 
 import type React from "react"
 import { useState } from "react"
-import { Check } from "lucide-react"
+import { Check, User, Mail, Phone, Briefcase, Users } from "lucide-react"
 import { Reveal } from "@/components/reveal"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 export function Invitation() {
   const [submitted, setSubmitted] = useState(false)
@@ -14,11 +21,11 @@ export function Invitation() {
   }
 
   return (
-    <section id="invitation" className="section-light relative py-24 sm:py-32">
+    <section id="invitation" className="s-invitation relative py-24 sm:py-32">
       <div className="mx-auto max-w-3xl px-6">
         <Reveal variant="fade-up">
           <div className="text-center">
-            <p className="font-script text-2xl text-royal sm:text-3xl">
+            <p className="font-script text-4xl text-royal sm:text-5xl">
               Rejoignez-nous
             </p>
             <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-5xl text-balance">
@@ -38,20 +45,7 @@ export function Invitation() {
         </Reveal>
 
         <Reveal variant="fade-up" delay={100} threshold={0.08}>
-          <div className="mt-12 overflow-hidden border border-royal/20 bg-card shadow-[0_20px_60px_-25px_oklch(0.5_0.2_255/0.45)]">
-            {/* royal header band */}
-            <div
-              className="flex items-center justify-center gap-3 py-4"
-              style={{ backgroundColor: "oklch(0.5 0.2 255)" }}
-            >
-              <span className="h-px w-8 bg-[oklch(0.98_0.005_85)]/50" />
-              <span className="text-[0.65rem] uppercase tracking-[0.35em] text-[oklch(0.98_0.005_85)]">
-                Places limitées — Juin 2026
-              </span>
-              <span className="h-px w-8 bg-[oklch(0.98_0.005_85)]/50" />
-            </div>
-
-            <div className="p-6 sm:p-12">
+          <div className="relative mt-12 overflow-hidden rounded-3xl border border-border/40 bg-card p-6 shadow-sm sm:p-16">
               {submitted ? (
                 <div className="flex flex-col items-center py-10 text-center">
                   <div className="flex size-16 items-center justify-center rounded-full bg-royal text-[oklch(0.98_0.005_85)]">
@@ -66,48 +60,71 @@ export function Invitation() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <LuxeField label="Prénom" name="firstName" />
-                    <LuxeField label="Nom" name="lastName" />
-                  </div>
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <LuxeField label="Email" name="email" type="email" />
-                    <LuxeField label="Téléphone" name="phone" type="tel" />
-                  </div>
-                  <LuxeField label="Organisation / Fonction" name="org" required={false} />
+                <form onSubmit={handleSubmit} className="space-y-6" suppressHydrationWarning>
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-12">
+                    <div className="sm:col-span-6">
+                      <ElegantInput placeholder="Prénom" name="firstName" icon={User} />
+                    </div>
+                    <div className="sm:col-span-6">
+                      <ElegantInput placeholder="Nom" name="lastName" icon={User} />
+                    </div>
+                    <div className="sm:col-span-12">
+                      <ElegantInput placeholder="Email" name="email" type="email" icon={Mail} />
+                    </div>
+                    <div className="sm:col-span-12">
+                      <ElegantInput placeholder="Téléphone" name="phone" type="tel" icon={Phone} />
+                    </div>
+                    <div className="sm:col-span-12" suppressHydrationWarning>
+                      <div className="relative">
+                        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center pl-4 text-muted-foreground/50">
+                          <Briefcase className="size-4" />
+                        </div>
+                        <Select name="role">
+                          <SelectTrigger className="flex h-[54px] w-full items-center justify-between rounded-xl border border-border bg-transparent py-4 pl-11 pr-4 text-sm font-normal text-foreground outline-none transition-all hover:bg-transparent focus:border-royal focus:ring-1 focus:ring-royal focus-visible:ring-1 focus-visible:ring-royal">
+                            <SelectValue placeholder="Votre statut" />
+                          </SelectTrigger>
+                          <SelectContent position="popper" sideOffset={4}>
+                            <SelectItem value="aiesecer_tm_tl">AIESECer TM/TL</SelectItem>
+                            <SelectItem value="aiesecer_lcp_lcvp">AIESECer LCP/LCVP</SelectItem>
+                            <SelectItem value="aiesecer_mcp_mcvp">AIESECer MCP/MCVP</SelectItem>
+                            <SelectItem value="alumni">Alumni</SelectItem>
+                            <SelectItem value="externe">Externe</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
 
-                  <div className="relative">
-                    <label className="mb-1 block text-[0.6rem] uppercase tracking-[0.25em] text-muted-foreground">
-                      Nombre de places
-                    </label>
-                    <div className="relative">
-                      <select
-                        name="seats"
-                        className="w-full appearance-none border-0 border-b border-border bg-transparent pb-2 pt-1 text-sm text-foreground outline-none transition-colors focus:border-royal"
-                      >
-                        <option>1 place</option>
-                        <option>2 places</option>
-                        <option>Table (8 places)</option>
-                      </select>
-                      {/* custom chevron */}
-                      <span className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-gold/60 text-xs">▾</span>
-                      {/* animated underline */}
-                      <span className="absolute bottom-0 left-0 h-px w-0 bg-royal transition-all duration-300 peer-focus:w-full" />
+                    <div className="sm:col-span-12" suppressHydrationWarning>
+                      <div className="relative">
+                        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center pl-4 text-muted-foreground/50">
+                          <Users className="size-4" />
+                        </div>
+                        <Select name="seats">
+                          <SelectTrigger className="flex h-[54px] w-full items-center justify-between rounded-xl border border-border bg-transparent py-4 pl-11 pr-4 text-sm font-normal text-foreground outline-none transition-all hover:bg-transparent focus:border-royal focus:ring-1 focus:ring-royal focus-visible:ring-1 focus-visible:ring-royal">
+                            <SelectValue placeholder="Nombre de places" />
+                          </SelectTrigger>
+                          <SelectContent position="popper" sideOffset={4}>
+                            <SelectItem value="solo">Solo</SelectItem>
+                            <SelectItem value="couple">Couple</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
                     </div>
                   </div>
 
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full bg-royal py-4 text-xs font-bold uppercase tracking-[0.22em] text-[oklch(0.98_0.005_85)] transition-opacity hover:opacity-90"
+                      className="w-full rounded-xl border border-[#0266c8]/50 bg-[#0266c8] bg-[linear-gradient(110deg,#0266c8,45%,#3b99f6,55%,#0266c8)] bg-[length:200%_100%] py-4 text-sm font-semibold text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_6px_16px_rgba(2,102,200,0.3)] transition-all duration-500 hover:bg-[position:100%_0] active:scale-[0.98]"
                     >
-                      Envoyer ma demande
+                      Demander mon Invitation
                     </button>
+                    <p className="mt-4 text-center text-xs text-muted-foreground">
+                      Les places étant limitées, votre demande sera soumise à validation.
+                    </p>
                   </div>
                 </form>
               )}
-            </div>
           </div>
         </Reveal>
       </div>
@@ -115,32 +132,31 @@ export function Invitation() {
   )
 }
 
-function LuxeField({
-  label,
+function ElegantInput({
   name,
   type = "text",
+  placeholder,
+  icon: Icon,
   required = true,
 }: {
-  label: string
   name: string
   type?: string
+  placeholder: string
+  icon: any
   required?: boolean
 }) {
   return (
-    <div className="group relative">
-      <label className="mb-1 block text-[0.6rem] uppercase tracking-[0.25em] text-muted-foreground transition-colors group-focus-within:text-royal">
-        {label}
-      </label>
-      <div className="relative">
-        <input
-          type={type}
-          name={name}
-          required={required}
-          className="peer w-full border-0 border-b border-border bg-transparent pb-2 pt-1 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/40 focus:border-transparent"
-        />
-        {/* animated underline — slides in from left on focus */}
-        <span className="absolute bottom-0 left-0 h-px w-0 bg-royal transition-all duration-300 ease-out peer-focus:w-full" />
+    <div className="relative" suppressHydrationWarning>
+      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-muted-foreground/50">
+        <Icon className="size-4" />
       </div>
+      <input
+        type={type}
+        name={name}
+        required={required}
+        placeholder={placeholder}
+        className="w-full rounded-xl border border-border bg-transparent py-4 pl-11 pr-4 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground/50 focus:border-royal focus:ring-1 focus:ring-royal"
+      />
     </div>
   )
 }

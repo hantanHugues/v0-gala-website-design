@@ -9,13 +9,13 @@ const stats = [
 
 export function About() {
   return (
-    <section id="apropos" className="section-light relative py-16 sm:py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-6">
+    <section id="apropos" className="s-about relative py-16 sm:py-24 lg:py-32">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-6">
 
         {/* ── Header ─────────────────────────────────────── */}
         <Reveal variant="fade-up">
           <div className="text-center">
-            <p className="font-script text-xl text-royal sm:text-2xl lg:text-3xl">
+            <p className="font-script text-3xl text-royal sm:text-4xl">
               Une soirée mémorable
             </p>
             <h2 className="mt-1 font-heading text-2xl font-bold text-foreground sm:mt-2 sm:text-4xl lg:text-5xl text-balance">
@@ -34,8 +34,8 @@ export function About() {
             <div className="relative lg:pb-8">
               <div className="overflow-hidden border border-royal/20">
                 <img
-                  src="/images/gala-toast.png"
-                  alt="Toast au champagne lors du gala"
+                  src="/images/MVIMG_20260503_024602_1.jpg"
+                  alt="Membres AIESEC in Benin lors d'un événement"
                   className="w-full object-cover aspect-[4/3] sm:aspect-[3/2] lg:aspect-[4/5]"
                 />
               </div>
@@ -79,11 +79,11 @@ export function About() {
               <div className="mt-8 sm:mt-10">
 
                 {/* Mobile (<sm) : 2×2 grid compact */}
-                <div className="grid grid-cols-2 gap-px overflow-hidden border border-border/50 bg-border/50 sm:hidden">
+                <div className="grid grid-cols-2 gap-px overflow-hidden border border-white/5 bg-white/5 sm:hidden">
                   {stats.map((s) => (
                     <div
                       key={s.label}
-                      className="bg-card/80 px-4 py-5 text-center"
+                      className="bg-black/8 backdrop-blur-sm px-4 py-5 text-center"
                     >
                       <p className="font-heading text-2xl font-bold text-royal">
                         {s.value}
@@ -96,9 +96,9 @@ export function About() {
                 </div>
 
                 {/* sm → lg : 4 colonnes en ligne */}
-                <div className="hidden sm:grid sm:grid-cols-4 lg:hidden gap-px overflow-hidden border border-border bg-border">
+                <div className="hidden sm:grid sm:grid-cols-4 lg:hidden gap-px overflow-hidden border border-white/5 bg-white/5">
                   {stats.map((s) => (
-                    <div key={s.label} className="bg-card px-3 py-6 text-center">
+                    <div key={s.label} className="bg-black/8 backdrop-blur-sm px-3 py-6 text-center">
                       <p className="font-heading text-2xl font-bold text-royal">{s.value}</p>
                       <p className="mt-1.5 text-[0.58rem] uppercase leading-tight tracking-[0.1em] text-muted-foreground">
                         {s.label}
@@ -108,9 +108,9 @@ export function About() {
                 </div>
 
                 {/* lg+ : grille 2×2 */}
-                <div className="hidden lg:grid lg:grid-cols-2 gap-px overflow-hidden border border-border bg-border">
+                <div className="hidden lg:grid lg:grid-cols-2 gap-px overflow-hidden border border-white/5 bg-white/5">
                   {stats.map((s) => (
-                    <div key={s.label} className="bg-card px-6 py-8 text-center">
+                    <div key={s.label} className="bg-black/8 backdrop-blur-sm px-6 py-8 text-center">
                       <p className="font-heading text-3xl font-bold text-royal xl:text-4xl">
                         {s.value}
                       </p>

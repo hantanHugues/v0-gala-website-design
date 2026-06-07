@@ -47,11 +47,11 @@ export function Program() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section id="programme" className="section-light relative py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="programme" className="s-program relative py-24 sm:py-32">
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
         <Reveal variant="fade-up">
           <div className="text-center">
-            <p className="font-script text-2xl text-royal sm:text-3xl">
+            <p className="font-script text-4xl text-royal sm:text-5xl">
               Le déroulé de la soirée
             </p>
             <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-5xl text-balance">
@@ -119,7 +119,7 @@ export function Program() {
             const Icon = s.icon
             return (
               <Reveal key={s.title} variant="fade-up" delay={i * 75} threshold={0.05}>
-                <div className="group relative bg-card p-8 transition-colors hover:bg-[oklch(0.95_0.02_255)] h-full">
+                <div className="group relative bg-card p-8 transition-colors hover:bg-card/60 h-full">
                   <span className="absolute inset-x-0 top-0 h-0.5 w-0 bg-royal transition-all duration-500 group-hover:w-full" />
                   <div className="flex items-center justify-between">
                     <span className="flex size-12 items-center justify-center rounded-full border border-royal/25 bg-[oklch(0.5_0.2_255/0.08)] text-royal transition-colors group-hover:bg-royal group-hover:text-[oklch(0.98_0.005_85)]">

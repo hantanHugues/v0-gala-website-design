@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -34,11 +35,25 @@ export function SiteNav() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6">
         {/* Logo — centered on mobile via absolute trick */}
-        <a href="#" className="flex flex-col leading-none md:leading-none">
-          <span className="font-heading text-lg font-bold tracking-[0.2em] text-cream">
-            AIESEC
-          </span>
-          <span className="font-script -mt-1 text-base text-gold">in Benin</span>
+        <a href="#" className="flex items-center">
+          {/* Light Mode Logo */}
+          <Image
+            src="/images/20 ANS AIB.png"
+            alt="20 Ans AIESEC in Benin"
+            width={120}
+            height={50}
+            className="h-10 w-auto object-contain sm:h-12 dark:hidden"
+            priority
+          />
+          {/* Dark Mode Logo */}
+          <Image
+            src="/images/20 ANS AIB 1.png"
+            alt="20 Ans AIESEC in Benin"
+            width={120}
+            height={50}
+            className="hidden h-10 w-auto object-contain sm:h-12 dark:block"
+            priority
+          />
         </a>
 
         <ul className="hidden items-center gap-9 md:flex">

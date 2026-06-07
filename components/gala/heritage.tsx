@@ -28,8 +28,7 @@ export function Heritage() {
   return (
     <section
       id="heritage"
-      className="relative overflow-hidden"
-      style={{ background: "oklch(0.13 0.02 265)" }}
+      className="heritage-bg relative overflow-hidden"
     >
       {/* DynamicRipple — subtil, couleurs royal/or à très faible opacité */}
       <DynamicRipple
@@ -60,7 +59,7 @@ export function Heritage() {
         <div className="relative mx-auto max-w-7xl px-6">
           <Reveal variant="fade-up">
             <div className="text-center">
-              <p className="font-script text-2xl text-gold sm:text-3xl">Notre parcours</p>
+              <p className="font-script text-4xl text-gold sm:text-5xl">Notre parcours</p>
               <h2 className="mt-2 font-heading text-3xl font-bold text-cream sm:text-5xl text-balance">
                 Deux Décennies d&apos;Excellence
               </h2>

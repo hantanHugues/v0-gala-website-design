@@ -39,7 +39,7 @@ export function Countdown() {
             <span className="font-heading text-3xl font-bold tabular-nums text-gold sm:text-5xl">
               {mounted ? String(u.value).padStart(2, "0") : "00"}
             </span>
-            <span className="mt-2 text-[0.6rem] uppercase tracking-[0.25em] text-cream/60 sm:text-xs">
+            <span className="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[oklch(0.32_0.12_258)] dark:text-cream/60 sm:text-xs">
               {u.label}
             </span>
           </div>

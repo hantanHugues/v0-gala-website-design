@@ -298,6 +298,7 @@ export function DynamicRipple({
   return (
     <div
       ref={containerRef}
+      suppressHydrationWarning
       className={cn(
         "relative overflow-hidden",
         roundedStyles[rounded],
