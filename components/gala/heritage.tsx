@@ -25,9 +25,16 @@ export function Heritage() {
   return (
     <section
       id="heritage"
-      className="relative border-y border-border bg-card/40 py-24 sm:py-32"
+      className="relative overflow-hidden py-24 sm:py-32"
+      style={{
+        background:
+          "linear-gradient(180deg, oklch(0.13 0.02 265) 0%, oklch(0.18 0.06 258) 50%, oklch(0.13 0.02 265) 100%)",
+      }}
     >
-      <div className="mx-auto max-w-7xl px-6">
+      {/* soft royal glow */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 size-[120%] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,oklch(0.5_0.2_255/0.18)_0%,transparent_60%)]" />
+
+      <div className="relative mx-auto max-w-7xl px-6">
         <div className="text-center">
           <p className="font-script text-2xl text-gold sm:text-3xl">
             Notre parcours
@@ -35,22 +42,23 @@ export function Heritage() {
           <h2 className="mt-2 font-heading text-3xl font-bold text-cream sm:text-5xl text-balance">
             Deux Décennies d&apos;Excellence
           </h2>
-          <div className="mx-auto mt-6 h-px w-24 hairline" />
+          <div className="mx-auto mt-6 h-px w-24 hairline-royal" />
         </div>
 
         <div className="mt-20 grid gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {milestones.map((m, i) => (
-            <div key={m.year} className="relative">
-              <div className="flex items-center gap-4">
-                <span className="font-heading text-2xl font-bold text-gold">
-                  {m.year}
-                </span>
-                <span className="h-px flex-1 bg-gold/25" />
-              </div>
-              <p className="mt-1 text-[0.65rem] uppercase tracking-[0.3em] text-royal">
+            <div
+              key={m.year}
+              className="group relative border-t border-royal/30 pt-6 transition-colors hover:border-gold/60"
+            >
+              <span className="absolute -top-px left-0 h-px w-0 bg-gold transition-all duration-500 group-hover:w-full" />
+              <p className="font-heading text-[0.7rem] tracking-[0.35em] text-royal">
                 {String(i + 1).padStart(2, "0")}
               </p>
-              <h3 className="mt-5 font-heading text-xl font-bold text-cream">
+              <span className="mt-3 block font-heading text-4xl font-bold gold-gradient-text">
+                {m.year}
+              </span>
+              <h3 className="mt-4 font-heading text-xl font-bold text-cream">
                 {m.title}
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-cream/60 text-pretty">

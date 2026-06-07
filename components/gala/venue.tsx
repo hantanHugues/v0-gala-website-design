@@ -16,7 +16,7 @@ export function Venue() {
             alt="Entrée prestigieuse du lieu du gala à Cotonou"
             className="size-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-royal/30 via-transparent to-background/80" />
         </div>
 
         <div className="flex flex-col justify-center bg-card px-6 py-20 sm:px-16">
@@ -26,7 +26,7 @@ export function Venue() {
           <h2 className="mt-2 font-heading text-3xl font-bold text-cream sm:text-5xl text-balance">
             Le Lieu
           </h2>
-          <div className="mt-6 h-px w-24 hairline" />
+          <div className="mt-6 h-px w-24 hairline-royal" />
 
           <p className="mt-8 max-w-md leading-relaxed text-cream/70 text-pretty">
             Au cœur de Cotonou, dans l&apos;un des écrins les plus prestigieux de
@@ -43,7 +43,7 @@ export function Venue() {
                   key={d.label}
                   className="flex items-center gap-5 bg-card px-6 py-5"
                 >
-                  <Icon className="size-6 text-gold" strokeWidth={1.4} />
+                  <Icon className="size-6 text-royal" strokeWidth={1.4} />
                   <div>
                     <p className="text-[0.65rem] uppercase tracking-[0.25em] text-cream/50">
                       {d.label}

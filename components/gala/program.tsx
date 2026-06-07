@@ -41,13 +41,16 @@ const schedule = [
 
 export function Program() {
   return (
-    <section id="programme" className="relative py-24 sm:py-32">
+    <section
+      id="programme"
+      className="section-light relative py-24 sm:py-32"
+    >
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center">
-          <p className="font-script text-2xl text-gold sm:text-3xl">
+          <p className="font-script text-2xl text-royal sm:text-3xl">
             Le déroulé de la soirée
           </p>
-          <h2 className="mt-2 font-heading text-3xl font-bold text-cream sm:text-5xl text-balance">
+          <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-5xl text-balance">
             Programme
           </h2>
           <div className="mx-auto mt-6 h-px w-24 hairline" />
@@ -59,18 +62,21 @@ export function Program() {
             return (
               <div
                 key={s.title}
-                className="group bg-card p-8 transition-colors hover:bg-secondary"
+                className="group relative bg-card p-8 transition-colors hover:bg-[oklch(0.95_0.02_255)]"
               >
+                <span className="absolute inset-x-0 top-0 h-0.5 w-0 bg-royal transition-all duration-500 group-hover:w-full" />
                 <div className="flex items-center justify-between">
-                  <Icon className="size-7 text-gold" strokeWidth={1.4} />
+                  <span className="flex size-12 items-center justify-center rounded-full border border-royal/25 bg-[oklch(0.5_0.2_255/0.08)] text-royal transition-colors group-hover:bg-royal group-hover:text-[oklch(0.98_0.005_85)]">
+                    <Icon className="size-6" strokeWidth={1.4} />
+                  </span>
                   <span className="font-heading text-sm font-bold tracking-widest text-royal">
                     {s.time}
                   </span>
                 </div>
-                <h3 className="mt-6 font-heading text-xl font-bold text-cream">
+                <h3 className="mt-6 font-heading text-xl font-bold text-foreground">
                   {s.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-cream/60 text-pretty">
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground text-pretty">
                   {s.text}
                 </p>
               </div>
