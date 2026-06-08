@@ -121,7 +121,7 @@ function MobileCarousel({ onOpen }: { onOpen: (i: number) => void }) {
               aria-label={`Agrandir : ${photo.alt}`}
             >
               {/* index counter */}
-              <span className="absolute left-3 top-3 z-20 font-heading text-[0.55rem] tracking-[0.3em] text-cream/60">
+              <span className="absolute left-3 top-3 z-20 font-heading text-[0.55rem] tracking-[0.3em] text-foreground/60 dark:text-cream/60">
                 {String(i + 1).padStart(2, "0")}/{photos.length}
               </span>
               <div className="relative aspect-[3/4] w-full">
@@ -193,7 +193,7 @@ function DesktopGrid({ onOpen }: { onOpen: (i: number) => void }) {
 
             {/* Top — index */}
             <div className="absolute left-3 top-3 z-10 opacity-0 transition-all duration-400 group-hover:opacity-100">
-              <span className="font-heading text-[0.55rem] tracking-[0.3em] text-cream/50">
+              <span className="font-heading text-[0.55rem] tracking-[0.3em] text-foreground/50 dark:text-cream/50">
                 {String(i + 1).padStart(2, "0")}
               </span>
             </div>
@@ -263,7 +263,7 @@ export function Gallery() {
           <p className="font-script text-4xl text-gold sm:text-5xl">
             Souvenirs d&apos;exception
           </p>
-          <h2 className="mt-2 font-heading text-3xl font-bold text-cream sm:text-5xl text-balance">
+          <h2 className="mt-2 font-heading text-3xl font-bold text-foreground dark:text-cream sm:text-5xl text-balance">
             Galerie des Éditions Passées
           </h2>
           <div className="mx-auto mt-6 h-px w-24 hairline-royal" />
@@ -286,7 +286,7 @@ export function Gallery() {
         <div className="mx-auto hidden max-w-6xl px-6 sm:block">
           <DesktopGrid onOpen={setActive} />
           {/* Scroll hint */}
-          <p className="mt-6 text-center text-[0.55rem] uppercase tracking-[0.35em] text-cream/25">
+          <p className="mt-6 text-center text-[0.55rem] uppercase tracking-[0.35em] text-foreground/25 dark:text-cream/25">
             Cliquez sur une photo pour l&apos;agrandir
           </p>
         </div>
@@ -304,21 +304,21 @@ export function Gallery() {
           {/* Close */}
           <button
             onClick={close}
-            className="absolute right-4 top-4 z-10 flex size-9 items-center justify-center rounded-full border border-gold/30 text-cream transition-all hover:bg-gold/15 sm:right-6 sm:top-6"
+            className="absolute right-4 top-4 z-10 flex size-9 items-center justify-center rounded-full border border-gold/30 text-foreground dark:text-cream transition-all hover:bg-gold/15 sm:right-6 sm:top-6"
             aria-label="Fermer"
           >
             <X className="size-4" />
           </button>
 
           {/* Counter */}
-          <div className="absolute left-1/2 top-5 -translate-x-1/2 font-heading text-[0.6rem] uppercase tracking-[0.35em] text-cream/40">
+          <div className="absolute left-1/2 top-5 -translate-x-1/2 font-heading text-[0.6rem] uppercase tracking-[0.35em] text-foreground/40 dark:text-cream/40">
             {String(active + 1).padStart(2, "0")} / {String(photos.length).padStart(2, "0")}
           </div>
 
           {/* Prev */}
           <button
             onClick={(e) => { e.stopPropagation(); prev() }}
-            className="absolute left-3 z-10 flex size-10 items-center justify-center rounded-full border border-gold/30 text-cream transition-all hover:bg-gold/15 sm:left-6"
+            className="absolute left-3 z-10 flex size-10 items-center justify-center rounded-full border border-gold/30 text-foreground dark:text-cream transition-all hover:bg-gold/15 sm:left-6"
             aria-label="Photo précédente"
           >
             <ChevronLeft className="size-5" />
@@ -368,7 +368,7 @@ export function Gallery() {
           {/* Next */}
           <button
             onClick={(e) => { e.stopPropagation(); next() }}
-            className="absolute right-3 z-10 flex size-10 items-center justify-center rounded-full border border-gold/30 text-cream transition-all hover:bg-gold/15 sm:right-6"
+            className="absolute right-3 z-10 flex size-10 items-center justify-center rounded-full border border-gold/30 text-foreground dark:text-cream transition-all hover:bg-gold/15 sm:right-6"
             aria-label="Photo suivante"
           >
             <ChevronRight className="size-5" />

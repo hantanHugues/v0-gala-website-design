@@ -4,6 +4,7 @@ import type React from "react"
 import { useState } from "react"
 import { Check, User, Mail, Phone, Briefcase, Users } from "lucide-react"
 import { Reveal } from "@/components/reveal"
+import { useLanguage } from "@/lib/i18n"
 import {
   Select,
   SelectContent,
@@ -13,6 +14,7 @@ import {
 } from "@/components/ui/select"
 
 export function Invitation() {
+  const { t } = useLanguage()
   const [submitted, setSubmitted] = useState(false)
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -26,10 +28,10 @@ export function Invitation() {
         <Reveal variant="fade-up">
           <div className="text-center">
             <p className="font-script text-4xl text-royal sm:text-5xl">
-              Rejoignez-nous
+              {t("invitation.subtitle")}
             </p>
             <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-5xl text-balance">
-              Demander une Invitation
+              {t("invitation.title")}
             </h2>
             {/* ornement décoratif */}
             <div className="mx-auto mt-6 flex items-center justify-center gap-3">
@@ -38,8 +40,7 @@ export function Invitation() {
               <span className="h-px w-10 bg-gold/40" />
             </div>
             <p className="mx-auto mt-5 max-w-xl leading-relaxed text-muted-foreground text-pretty">
-              Les places sont strictement limitées. Renseignez vos informations
-              et notre comité reviendra vers vous avec votre confirmation.
+              {t("invitation.text")}
             </p>
           </div>
         </Reveal>
@@ -52,27 +53,26 @@ export function Invitation() {
                     <Check className="size-8" />
                   </div>
                   <h3 className="mt-6 font-heading text-2xl font-bold text-foreground">
-                    Demande envoyée
+                    {t("invitation.success_title")}
                   </h3>
                   <p className="mt-3 max-w-sm leading-relaxed text-muted-foreground text-pretty">
-                    Merci pour votre intérêt. Notre comité examinera votre demande
-                    et vous recontactera très prochainement.
+                    {t("invitation.success_text")}
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6" suppressHydrationWarning>
                   <div className="grid grid-cols-1 gap-6 sm:grid-cols-12">
                     <div className="sm:col-span-6">
-                      <ElegantInput placeholder="Prénom" name="firstName" icon={User} />
+                      <ElegantInput placeholder={t("invitation.form.firstname")} name="firstName" icon={User} />
                     </div>
                     <div className="sm:col-span-6">
-                      <ElegantInput placeholder="Nom" name="lastName" icon={User} />
+                      <ElegantInput placeholder={t("invitation.form.lastname")} name="lastName" icon={User} />
                     </div>
                     <div className="sm:col-span-12">
-                      <ElegantInput placeholder="Email" name="email" type="email" icon={Mail} />
+                      <ElegantInput placeholder={t("invitation.form.email")} name="email" type="email" icon={Mail} />
                     </div>
                     <div className="sm:col-span-12">
-                      <ElegantInput placeholder="Téléphone" name="phone" type="tel" icon={Phone} />
+                      <ElegantInput placeholder={t("invitation.form.phone")} name="phone" type="tel" icon={Phone} />
                     </div>
                     <div className="sm:col-span-12" suppressHydrationWarning>
                       <div className="relative">
@@ -81,14 +81,14 @@ export function Invitation() {
                         </div>
                         <Select name="role">
                           <SelectTrigger className="flex h-[54px] w-full items-center justify-between rounded-xl border border-border bg-transparent py-4 pl-11 pr-4 text-sm font-normal text-foreground outline-none transition-all hover:bg-transparent focus:border-royal focus:ring-1 focus:ring-royal focus-visible:ring-1 focus-visible:ring-royal">
-                            <SelectValue placeholder="Votre statut" />
+                            <SelectValue placeholder={t("invitation.form.role")} />
                           </SelectTrigger>
                           <SelectContent position="popper" sideOffset={4}>
-                            <SelectItem value="aiesecer_tm_tl">AIESECer TM/TL</SelectItem>
-                            <SelectItem value="aiesecer_lcp_lcvp">AIESECer LCP/LCVP</SelectItem>
-                            <SelectItem value="aiesecer_mcp_mcvp">AIESECer MCP/MCVP</SelectItem>
-                            <SelectItem value="alumni">Alumni</SelectItem>
-                            <SelectItem value="externe">Externe</SelectItem>
+                            <SelectItem value="aiesecer_tm_tl">{t("invitation.form.role.a1")}</SelectItem>
+                            <SelectItem value="aiesecer_lcp_lcvp">{t("invitation.form.role.a2")}</SelectItem>
+                            <SelectItem value="aiesecer_mcp_mcvp">{t("invitation.form.role.a3")}</SelectItem>
+                            <SelectItem value="alumni">{t("invitation.form.role.alumni")}</SelectItem>
+                            <SelectItem value="externe">{t("invitation.form.role.external")}</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -101,11 +101,11 @@ export function Invitation() {
                         </div>
                         <Select name="seats">
                           <SelectTrigger className="flex h-[54px] w-full items-center justify-between rounded-xl border border-border bg-transparent py-4 pl-11 pr-4 text-sm font-normal text-foreground outline-none transition-all hover:bg-transparent focus:border-royal focus:ring-1 focus:ring-royal focus-visible:ring-1 focus-visible:ring-royal">
-                            <SelectValue placeholder="Nombre de places" />
+                            <SelectValue placeholder={t("invitation.form.seats")} />
                           </SelectTrigger>
                           <SelectContent position="popper" sideOffset={4}>
-                            <SelectItem value="solo">Solo</SelectItem>
-                            <SelectItem value="couple">Couple</SelectItem>
+                            <SelectItem value="solo">{t("invitation.form.seats.solo")}</SelectItem>
+                            <SelectItem value="couple">{t("invitation.form.seats.couple")}</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -117,10 +117,10 @@ export function Invitation() {
                       type="submit"
                       className="w-full rounded-xl border border-[#0266c8]/50 bg-[#0266c8] bg-[linear-gradient(110deg,#0266c8,45%,#3b99f6,55%,#0266c8)] bg-[length:200%_100%] py-4 text-sm font-semibold text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_6px_16px_rgba(2,102,200,0.3)] transition-all duration-500 hover:bg-[position:100%_0] active:scale-[0.98]"
                     >
-                      Demander mon Invitation
+                      {t("invitation.form.submit")}
                     </button>
                     <p className="mt-4 text-center text-xs text-muted-foreground">
-                      Les places étant limitées, votre demande sera soumise à validation.
+                      {t("invitation.form.hint")}
                     </p>
                   </div>
                 </form>

@@ -1,13 +1,19 @@
-import { Reveal } from "@/components/reveal"
+"use client"
 
-const stats = [
-  { value: "20", label: "Années d'impact" },
-  { value: "5 000+", label: "Jeunes leaders formés" },
-  { value: "40+", label: "Pays partenaires" },
-  { value: "300", label: "Invités d'honneur" },
-]
+import { Reveal } from "@/components/reveal"
+import { useLanguage } from "@/lib/i18n"
+import { TranslationKey } from "@/lib/translations"
 
 export function About() {
+  const { t } = useLanguage()
+  
+  const stats: { value: string; labelKey: TranslationKey }[] = [
+    { value: "20", labelKey: "about.stat1" },
+    { value: "5 000+", labelKey: "about.stat2" },
+    { value: "40+", labelKey: "about.stat3" },
+    { value: "300", labelKey: "about.stat4" },
+  ]
+
   return (
     <section id="apropos" className="s-about relative py-16 sm:py-24 lg:py-32">
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-6">
@@ -16,10 +22,10 @@ export function About() {
         <Reveal variant="fade-up">
           <div className="text-center">
             <p className="font-script text-3xl text-royal sm:text-4xl">
-              Une soirée mémorable
+              {t("about.subtitle")}
             </p>
             <h2 className="mt-1 font-heading text-2xl font-bold text-foreground sm:mt-2 sm:text-4xl lg:text-5xl text-balance">
-              L&apos;Événement
+              {t("about.title")}
             </h2>
             <div className="mx-auto mt-4 h-px w-14 hairline sm:w-20 lg:w-24" />
           </div>
@@ -53,7 +59,7 @@ export function About() {
                   2026
                 </p>
                 <p className="text-[0.5rem] uppercase tracking-[0.15em] text-[oklch(0.98_0.005_85)]/80 lg:mt-1 lg:text-[0.6rem]">
-                  Célébration
+                  {t("about.badge_text")}
                 </p>
               </div>
             </div>
@@ -63,16 +69,10 @@ export function About() {
           <Reveal variant="fade-up" threshold={0.08} delay={80}>
             <div>
               <p className="text-sm leading-relaxed text-foreground text-pretty sm:text-base lg:text-lg">
-                Depuis deux décennies, AIESEC in Benin façonne une génération de
-                leaders engagés, audacieux et tournés vers l&apos;impact. Ce gala
-                anniversaire marque un moment historique&nbsp;: la célébration de
-                ce parcours et de toutes les vies transformées.
+                {t("about.text_p1")}
               </p>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground text-pretty sm:mt-5">
-                Le temps d&apos;une soirée d&apos;exception, nous réunirons celles
-                et ceux qui ont écrit cette histoire — alumni, partenaires,
-                dirigeants et visionnaires — pour honorer le passé et inspirer les
-                vingt prochaines années.
+                {t("about.text_p2")}
               </p>
 
               {/* ── Stats ────────────────────────────────────── */}
@@ -82,14 +82,14 @@ export function About() {
                 <div className="grid grid-cols-2 gap-px overflow-hidden border border-white/5 bg-white/5 sm:hidden">
                   {stats.map((s) => (
                     <div
-                      key={s.label}
+                      key={s.labelKey}
                       className="bg-black/8 backdrop-blur-sm px-4 py-5 text-center"
                     >
                       <p className="font-heading text-2xl font-bold text-royal">
                         {s.value}
                       </p>
                       <p className="mt-1 text-[0.55rem] uppercase leading-tight tracking-[0.1em] text-muted-foreground">
-                        {s.label}
+                        {t(s.labelKey)}
                       </p>
                     </div>
                   ))}
@@ -98,10 +98,10 @@ export function About() {
                 {/* sm → lg : 4 colonnes en ligne */}
                 <div className="hidden sm:grid sm:grid-cols-4 lg:hidden gap-px overflow-hidden border border-white/5 bg-white/5">
                   {stats.map((s) => (
-                    <div key={s.label} className="bg-black/8 backdrop-blur-sm px-3 py-6 text-center">
+                    <div key={s.labelKey} className="bg-black/8 backdrop-blur-sm px-3 py-6 text-center">
                       <p className="font-heading text-2xl font-bold text-royal">{s.value}</p>
                       <p className="mt-1.5 text-[0.58rem] uppercase leading-tight tracking-[0.1em] text-muted-foreground">
-                        {s.label}
+                        {t(s.labelKey)}
                       </p>
                     </div>
                   ))}
@@ -110,12 +110,12 @@ export function About() {
                 {/* lg+ : grille 2×2 */}
                 <div className="hidden lg:grid lg:grid-cols-2 gap-px overflow-hidden border border-white/5 bg-white/5">
                   {stats.map((s) => (
-                    <div key={s.label} className="bg-black/8 backdrop-blur-sm px-6 py-8 text-center">
+                    <div key={s.labelKey} className="bg-black/8 backdrop-blur-sm px-6 py-8 text-center">
                       <p className="font-heading text-3xl font-bold text-royal xl:text-4xl">
                         {s.value}
                       </p>
                       <p className="mt-2 text-xs uppercase tracking-[0.15em] text-muted-foreground">
-                        {s.label}
+                        {t(s.labelKey)}
                       </p>
                     </div>
                   ))}

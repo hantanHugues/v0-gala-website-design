@@ -26,6 +26,9 @@ export const metadata: Metadata = {
     "Célébrons 20 ans d'impact. Un gala prestigieux réunissant leaders, entrepreneurs et décideurs internationaux — Juin 2026, Cotonou.",
 };
 
+import { LanguageProvider } from "@/lib/i18n";
+import { ThemeProvider } from "@/components/theme-provider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,22 +41,11 @@ export default function RootLayout({
       className={`${fontHeading.variable} ${fontScript.variable} ${fontSans.variable}`}
     >
       <body className="antialiased bg-background font-sans">
-        {/* Script de détection thème — dans body pour exécution fiable en Next.js App Router */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){
-  try{
-    var mq=window.matchMedia('(prefers-color-scheme: dark)');
-    if(mq.matches)document.documentElement.classList.add('dark');
-    mq.addEventListener('change',function(e){
-      if(e.matches)document.documentElement.classList.add('dark');
-      else document.documentElement.classList.remove('dark');
-    });
-  }catch(e){}
-})();`,
-          }}
-        />
-        {children}
+        <ThemeProvider>
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

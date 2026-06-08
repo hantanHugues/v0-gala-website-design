@@ -26,7 +26,7 @@ export function Venue() {
             <div className="absolute bottom-0 inset-x-0 px-4 pb-4 lg:hidden">
               <span className="inline-flex items-center gap-2 rounded-sm bg-background/80 px-3 py-1.5 backdrop-blur-sm">
                 <MapPin className="size-3 text-gold" />
-                <span className="font-heading text-[0.6rem] uppercase tracking-[0.25em] text-cream">
+                <span className="font-heading text-[0.6rem] uppercase tracking-[0.25em] text-foreground dark:text-cream">
                   Cotonou, Bénin
                 </span>
               </span>
@@ -39,12 +39,12 @@ export function Venue() {
             <p className="font-script text-4xl text-gold sm:text-5xl">
               Un cadre d&apos;exception
             </p>
-            <h2 className="mt-2 font-heading text-3xl font-bold text-cream sm:text-5xl text-balance">
+            <h2 className="mt-2 font-heading text-3xl font-bold text-foreground dark:text-cream sm:text-5xl text-balance">
               Le Lieu
             </h2>
             <div className="mt-6 h-px w-24 hairline-royal" />
 
-            <p className="mt-8 max-w-md leading-relaxed text-cream/70 text-pretty">
+            <p className="mt-8 max-w-md leading-relaxed text-foreground/70 dark:text-cream/70 text-pretty">
               Au cœur de Cotonou, dans l&apos;un des écrins les plus prestigieux de
               la ville, vivez une soirée à la hauteur de cet anniversaire
               historique. L&apos;adresse exacte sera communiquée aux invités
@@ -61,7 +61,7 @@ export function Venue() {
                     className="flex items-center gap-2 rounded-sm border border-border/60 bg-background/30 px-3 py-2"
                   >
                     <Icon className="size-3.5 shrink-0 text-royal" strokeWidth={1.5} />
-                    <span className="text-xs text-cream/80">{d.value}</span>
+                    <span className="text-xs text-foreground/80 dark:text-cream/80">{d.value}</span>
                   </div>
                 )
               })}
@@ -76,10 +76,10 @@ export function Venue() {
                     <div className="flex items-center gap-5 bg-card px-6 py-5">
                       <Icon className="size-6 text-royal" strokeWidth={1.4} />
                       <div suppressHydrationWarning>
-                        <p className="text-[0.65rem] uppercase tracking-[0.25em] text-cream/50">
+                        <p className="text-[0.65rem] uppercase tracking-[0.25em] text-foreground/50 dark:text-cream/50">
                           {d.label}
                         </p>
-                        <p className="mt-0.5 text-cream">{d.value}</p>
+                        <p className="mt-0.5 text-foreground dark:text-cream">{d.value}</p>
                       </div>
                     </div>
                   </Reveal>

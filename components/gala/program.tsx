@@ -3,48 +3,51 @@
 import { useState } from "react"
 import { Wine, Mic, Music, Award, UtensilsCrossed, Sparkles, ChevronDown } from "lucide-react"
 import { Reveal } from "@/components/reveal"
-
-const schedule = [
-  {
-    time: "19h00",
-    title: "Cocktail de Bienvenue",
-    text: "Réception au champagne et networking dans les salons d'honneur.",
-    icon: Wine,
-  },
-  {
-    time: "20h00",
-    title: "Cérémonie d'Ouverture",
-    text: "Discours inauguraux et rétrospective des 20 ans d'impact.",
-    icon: Mic,
-  },
-  {
-    time: "20h45",
-    title: "Dîner de Gala",
-    text: "Un menu gastronomique servi dans un cadre raffiné et intimiste.",
-    icon: UtensilsCrossed,
-  },
-  {
-    time: "22h00",
-    title: "Cérémonie des Récompenses",
-    text: "Hommage aux alumni, partenaires et figures emblématiques.",
-    icon: Award,
-  },
-  {
-    time: "22h45",
-    title: "Performances Live",
-    text: "Spectacles d'artistes invités et moments d'émotion.",
-    icon: Sparkles,
-  },
-  {
-    time: "23h30",
-    title: "Soirée Dansante",
-    text: "DJ set et célébration jusqu'au bout de la nuit.",
-    icon: Music,
-  },
-]
+import { useLanguage } from "@/lib/i18n"
+import { TranslationKey } from "@/lib/translations"
 
 export function Program() {
+  const { t } = useLanguage()
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  const schedule: { time: string; titleKey: TranslationKey; textKey: TranslationKey; icon: any }[] = [
+    {
+      time: "19h00",
+      titleKey: "program.s1_title",
+      textKey: "program.s1_text",
+      icon: Wine,
+    },
+    {
+      time: "20h00",
+      titleKey: "program.s2_title",
+      textKey: "program.s2_text",
+      icon: Mic,
+    },
+    {
+      time: "20h45",
+      titleKey: "program.s3_title",
+      textKey: "program.s3_text",
+      icon: UtensilsCrossed,
+    },
+    {
+      time: "22h00",
+      titleKey: "program.s4_title",
+      textKey: "program.s4_text",
+      icon: Award,
+    },
+    {
+      time: "22h45",
+      titleKey: "program.s5_title",
+      textKey: "program.s5_text",
+      icon: Sparkles,
+    },
+    {
+      time: "23h30",
+      titleKey: "program.s6_title",
+      textKey: "program.s6_text",
+      icon: Music,
+    },
+  ]
 
   return (
     <section id="programme" className="s-program relative py-24 sm:py-32">
@@ -52,10 +55,10 @@ export function Program() {
         <Reveal variant="fade-up">
           <div className="text-center">
             <p className="font-script text-4xl text-royal sm:text-5xl">
-              Le déroulé de la soirée
+              {t("program.subtitle")}
             </p>
             <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-5xl text-balance">
-              Programme
+              {t("program.title")}
             </h2>
             <div className="mx-auto mt-6 h-px w-24 hairline" />
           </div>
@@ -72,7 +75,7 @@ export function Program() {
                 const Icon = s.icon
                 const isOpen = openIndex === i
                 return (
-                  <div key={s.title} className="relative pl-12">
+                  <div key={s.titleKey} className="relative pl-12">
                     {/* dot on the timeline */}
                     <div className={`absolute left-[0.9rem] top-4 size-3 -translate-x-1/2 rounded-full border-2 transition-colors duration-300 ${isOpen ? "border-royal bg-royal" : "border-royal/40 bg-background"}`} />
 
@@ -89,7 +92,7 @@ export function Program() {
                             {s.time}
                           </span>
                           <span className="block font-heading text-base font-bold text-foreground">
-                            {s.title}
+                            {t(s.titleKey)}
                           </span>
                         </div>
                       </div>
@@ -98,12 +101,11 @@ export function Program() {
                       />
                     </button>
 
-                    {/* expanded text */}
                     <div
-                      className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-32 pb-4 pt-2 opacity-100" : "max-h-0 opacity-0"}`}
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
                     >
-                      <p className="text-sm leading-relaxed text-muted-foreground text-pretty">
-                        {s.text}
+                      <p className="pb-4 pl-12 pr-4 text-sm leading-relaxed text-muted-foreground text-pretty">
+                        {t(s.textKey)}
                       </p>
                     </div>
                   </div>
@@ -118,7 +120,7 @@ export function Program() {
           {schedule.map((s, i) => {
             const Icon = s.icon
             return (
-              <Reveal key={s.title} variant="fade-up" delay={i * 75} threshold={0.05}>
+              <Reveal key={s.titleKey} variant="fade-up" delay={i * 75} threshold={0.05}>
                 <div className="group relative bg-card p-8 transition-colors hover:bg-card/60 h-full">
                   <span className="absolute inset-x-0 top-0 h-0.5 w-0 bg-royal transition-all duration-500 group-hover:w-full" />
                   <div className="flex items-center justify-between">
@@ -129,8 +131,8 @@ export function Program() {
                       {s.time}
                     </span>
                   </div>
-                  <h3 className="mt-6 font-heading text-xl font-bold text-foreground">{s.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground text-pretty">{s.text}</p>
+                  <h3 className="mt-6 font-heading text-xl font-bold text-foreground">{t(s.titleKey)}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground text-pretty">{t(s.textKey)}</p>
                 </div>
               </Reveal>
             )

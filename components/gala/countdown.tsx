@@ -1,6 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useLanguage } from "@/lib/i18n"
+import { TranslationKey } from "@/lib/translations"
 
 const TARGET = new Date("2026-06-20T19:00:00")
 
@@ -15,6 +17,7 @@ function getRemaining() {
 }
 
 export function Countdown() {
+  const { t } = useLanguage()
   const [time, setTime] = useState(getRemaining())
   const [mounted, setMounted] = useState(false)
 
@@ -24,23 +27,23 @@ export function Countdown() {
     return () => clearInterval(id)
   }, [])
 
-  const units = [
-    { label: "Jours", value: time.jours },
-    { label: "Heures", value: time.heures },
-    { label: "Minutes", value: time.minutes },
-    { label: "Secondes", value: time.secondes },
+  const units: { labelKey: TranslationKey; value: number }[] = [
+    { labelKey: "countdown.days", value: time.jours },
+    { labelKey: "countdown.hours", value: time.heures },
+    { labelKey: "countdown.minutes", value: time.minutes },
+    { labelKey: "countdown.seconds", value: time.secondes },
   ]
 
   return (
     <div className="flex items-center justify-center gap-4 sm:gap-8">
       {units.map((u, i) => (
-        <div key={u.label} className="flex items-center gap-4 sm:gap-8">
+        <div key={u.labelKey} className="flex items-center gap-4 sm:gap-8">
           <div className="flex flex-col items-center">
             <span className="font-heading text-3xl font-bold tabular-nums text-gold sm:text-5xl">
               {mounted ? String(u.value).padStart(2, "0") : "00"}
             </span>
             <span className="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[oklch(0.32_0.12_258)] dark:text-cream/60 sm:text-xs">
-              {u.label}
+              {t(u.labelKey)}
             </span>
           </div>
           {i < units.length - 1 && (

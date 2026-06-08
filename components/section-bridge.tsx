@@ -22,7 +22,7 @@ export function SectionBridge({
   const [isDark, setIsDark] = useState(true)
 
   useEffect(() => {
-    // Lit l'état initial depuis la classe html (définie par le script inline)
+    // Lit l'état initial depuis la classe html (définie par le script inline ou next-themes)
     const update = () =>
       setIsDark(document.documentElement.classList.contains("dark"))
 

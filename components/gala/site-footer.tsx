@@ -48,7 +48,7 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <p className="mt-6 max-w-md leading-relaxed text-sm text-cream/55 text-pretty">
+          <p className="mt-6 max-w-md leading-relaxed text-sm text-foreground/55 dark:text-cream/55 text-pretty">
             Gala des 20 ans d&apos;impact — Une célébration du leadership des
             jeunes, du passé à l&apos;avenir.
           </p>
@@ -58,7 +58,7 @@ export function SiteFooter() {
               <a
                 key={i}
                 href="#"
-                className="text-cream/60 transition-colors hover:text-gold"
+                className="text-foreground/60 dark:text-cream/60 transition-colors hover:text-gold"
                 aria-label="Réseau social"
               >
                 <Icon className="size-5" strokeWidth={1.5} />
@@ -68,10 +68,10 @@ export function SiteFooter() {
 
           <div className="mt-10 h-px w-full max-w-xs hairline" />
 
-          <p className="mt-8 text-xs uppercase tracking-[0.2em] text-cream/40">
+          <p className="mt-8 text-xs uppercase tracking-[0.2em] text-foreground/40 dark:text-cream/40">
             Juin 2026 · Cotonou, Bénin
           </p>
-          <p className="mt-3 text-xs text-cream/35">
+          <p className="mt-3 text-xs text-foreground/35 dark:text-cream/35">
             © 2026 AIESEC in Benin. Tous droits réservés.
           </p>
         </div>

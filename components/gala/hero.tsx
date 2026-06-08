@@ -9,28 +9,26 @@ const Silk = dynamic(() => import("@/components/silk"), { ssr: false })
 /* Couleur Silk par thème :
    Dark  → navy profond pour le fond sombre
    Light → doré champagne chaud sur fond ivoire */
+import { useLanguage } from "@/lib/i18n"
+
 const SILK_DARK = "#1a3a7a"
 const SILK_LIGHT = "#ffffff"   // blanc pur, fond clair
 
 export function Hero() {
+  const { t } = useLanguage()
   const [silkColor, setSilkColor] = useState(SILK_DARK)
 
   useEffect(() => {
     const update = () => {
       const dark = document.documentElement.classList.contains("dark")
-      // Si pas de classe dark ET système en light mode → couleur light
-      const systemLight = window.matchMedia("(prefers-color-scheme: light)").matches
-      setSilkColor(!dark && systemLight ? SILK_LIGHT : SILK_DARK)
+      setSilkColor(!dark ? SILK_LIGHT : SILK_DARK)
     }
     update()
 
     const observer = new MutationObserver(update)
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] })
 
-    const mq = window.matchMedia("(prefers-color-scheme: light)")
-    mq.addEventListener("change", update)
-
-    return () => { observer.disconnect(); mq.removeEventListener("change", update) }
+    return () => { observer.disconnect() }
   }, [])
 
   return (
@@ -62,12 +60,12 @@ export function Hero() {
         {/* Title overlaid on the big number */}
         <div className="-mt-8 sm:-mt-12 lg:-mt-16">
           <h1 className="font-heading text-3xl font-bold text-[oklch(0.32_0.12_258)] drop-shadow-sm dark:text-cream sm:text-5xl lg:text-6xl">
-            Ans d&apos;Impact
+            {t("hero.title")}
           </h1>
           <p className="mt-3 font-script text-3xl text-gold drop-shadow-sm sm:text-4xl lg:text-5xl">
-            Honorer l&apos;Héritage,
+            {t("hero.subtitle_line1")}
             <br />
-            Inspirer l&apos;Avenir
+            {t("hero.subtitle_line2")}
           </p>
         </div>
 
@@ -84,12 +82,12 @@ export function Hero() {
           href="#invitation"
           className="mt-10 inline-block border border-gold/50 bg-background/30 px-10 py-4 text-[0.65rem] font-bold uppercase tracking-[0.35em] text-gold shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gold hover:text-primary-foreground hover:shadow-gold/20 sm:mt-12"
         >
-          Réserver ma place
+          {t("hero.cta")}
         </a>
 
         {/* Location */}
         <p className="mt-8 text-[0.65rem] font-bold uppercase tracking-[0.4em] text-[oklch(0.32_0.12_258)] dark:text-cream/40">
-          Cotonou · Bénin · Tenue de soirée
+          {t("hero.location_label")}
         </p>
       </div>
 
@@ -99,7 +97,7 @@ export function Hero() {
           href="#apropos"
           className="flex flex-col items-center gap-2 text-[oklch(0.32_0.12_258)] transition-colors hover:text-gold dark:text-cream/40"
         >
-          <span className="text-[0.55rem] font-bold uppercase tracking-[0.4em]">Découvrir</span>
+          <span className="text-[0.55rem] font-bold uppercase tracking-[0.4em]">{t("hero.scroll_cue")}</span>
           <span className="block h-8 w-px animate-shimmer bg-gradient-to-b from-[oklch(0.32_0.12_258)] to-transparent dark:from-cream/50" />
         </a>
       </div>

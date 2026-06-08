@@ -60,7 +60,7 @@ export function Heritage() {
           <Reveal variant="fade-up">
             <div className="text-center">
               <p className="font-script text-4xl text-gold sm:text-5xl">Notre parcours</p>
-              <h2 className="mt-2 font-heading text-3xl font-bold text-cream sm:text-5xl text-balance">
+              <h2 className="mt-2 font-heading text-3xl font-bold text-foreground dark:text-cream sm:text-5xl text-balance">
                 Deux Décennies d&apos;Excellence
               </h2>
               <div className="mx-auto mt-6 h-px w-24 hairline-royal" />
@@ -86,8 +86,8 @@ export function Heritage() {
                         <span className="mt-1 block font-heading text-2xl font-bold gold-gradient-text">
                           {m.year}
                         </span>
-                        <h3 className="mt-2 font-heading text-base font-bold text-cream">{m.title}</h3>
-                        <p className="mt-2 text-xs leading-relaxed text-cream/55 text-pretty">{m.text}</p>
+                        <h3 className="mt-2 font-heading text-base font-bold text-foreground dark:text-cream">{m.title}</h3>
+                        <p className="mt-2 text-xs leading-relaxed text-foreground/55 dark:text-cream/55 text-pretty">{m.text}</p>
                       </div>
 
                       {/* central dot */}
@@ -116,8 +116,8 @@ export function Heritage() {
                   <span className="mt-3 block font-heading text-4xl font-bold gold-gradient-text">
                     {m.year}
                   </span>
-                  <h3 className="mt-4 font-heading text-xl font-bold text-cream">{m.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-cream/60 text-pretty">{m.text}</p>
+                  <h3 className="mt-4 font-heading text-xl font-bold text-foreground dark:text-cream">{m.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-foreground/60 dark:text-cream/60 text-pretty">{m.text}</p>
                 </div>
               </Reveal>
             ))}

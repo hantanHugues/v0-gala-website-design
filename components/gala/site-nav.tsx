@@ -2,22 +2,29 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Sun, Moon, Monitor } from "lucide-react"
 import { cn } from "@/lib/utils"
-
-const links = [
-  { href: "#apropos", label: "L'Événement" },
-  { href: "#heritage", label: "20 Ans" },
-  { href: "#programme", label: "Programme" },
-  { href: "#lieu", label: "Le Lieu" },
-  { href: "#invitation", label: "Réserver" },
-]
+import { useLanguage } from "@/lib/i18n"
+import { TranslationKey } from "@/lib/translations"
+import { useTheme } from "next-themes"
 
 export function SiteNav() {
+  const { language, setLanguage, t } = useLanguage()
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
+  const links: { href: string; labelKey: TranslationKey }[] = [
+    { href: "#apropos", labelKey: "nav.about" },
+    { href: "#heritage", labelKey: "nav.heritage" },
+    { href: "#programme", labelKey: "nav.program" },
+    { href: "#lieu", labelKey: "nav.venue" },
+    { href: "#invitation", labelKey: "nav.reservation" },
+  ]
+
   useEffect(() => {
+    setMounted(true)
     const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll()
     window.addEventListener("scroll", onScroll)
@@ -61,24 +68,70 @@ export function SiteNav() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="text-xs uppercase tracking-[0.18em] text-cream/70 transition-colors hover:text-gold"
+                className="text-xs uppercase tracking-[0.18em] text-foreground/70 dark:text-cream/70 transition-colors hover:text-gold"
               >
-                {l.label}
+                {t(l.labelKey)}
               </a>
             </li>
           ))}
         </ul>
 
-        <a
-          href="#invitation"
-          className="hidden border border-gold px-5 py-2.5 text-xs uppercase tracking-[0.18em] text-gold transition-colors hover:bg-gold hover:text-primary-foreground md:inline-block"
-        >
-          Demander une invitation
-        </a>
+        <div className="flex items-center gap-4 sm:gap-6">
+          {/* Theme Switcher */}
+          {mounted && (
+            <button
+              onClick={() => {
+                if (theme === "system") setTheme("dark")
+                else if (theme === "dark") setTheme("light")
+                else setTheme("system")
+              }}
+              className="flex size-7 items-center justify-center rounded-full border border-royal/30 bg-background/70 text-foreground/70 backdrop-blur-md transition-colors hover:text-royal dark:border-cream/30 dark:hover:text-gold"
+              title="Changer le thème"
+              aria-label="Changer le thème"
+            >
+              {theme === "light" && <Sun className="size-3.5" />}
+              {theme === "dark" && <Moon className="size-3.5" />}
+              {theme === "system" && <Monitor className="size-3.5" />}
+            </button>
+          )}
+
+          {/* Language Switcher */}
+          <div className="flex items-center rounded-full border border-royal/30 bg-background/70 p-0.5 backdrop-blur-md dark:border-cream/30">
+            <button
+              onClick={() => setLanguage("fr")}
+              className={cn(
+                "rounded-full px-2.5 py-1 text-[0.6rem] font-bold transition-colors",
+                language === "fr"
+                  ? "bg-royal text-white dark:bg-cream dark:text-background"
+                  : "text-foreground/50 hover:text-foreground"
+              )}
+            >
+              FR
+            </button>
+            <button
+              onClick={() => setLanguage("en")}
+              className={cn(
+                "rounded-full px-2.5 py-1 text-[0.6rem] font-bold transition-colors",
+                language === "en"
+                  ? "bg-royal text-white dark:bg-cream dark:text-background"
+                  : "text-foreground/50 hover:text-foreground"
+              )}
+            >
+              EN
+            </button>
+          </div>
+
+          <a
+            href="#invitation"
+            className="hidden border border-gold px-5 py-2.5 text-xs uppercase tracking-[0.18em] text-gold transition-colors hover:bg-gold hover:text-primary-foreground md:inline-block"
+          >
+            {t("nav.invite_button")}
+          </a>
+        </div>
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="relative z-10 text-cream md:hidden"
+          className="relative z-10 text-foreground dark:text-cream md:hidden"
           aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
         >
           <span
@@ -121,7 +174,7 @@ export function SiteNav() {
                 <a
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-between py-3 text-sm uppercase tracking-[0.18em] text-cream/80 transition-colors hover:text-gold"
+                  className="flex items-center justify-between py-3 text-sm uppercase tracking-[0.18em] text-foreground/80 dark:text-cream/80 transition-colors hover:text-gold"
                 >
                   {l.label}
                   <span className="h-px w-6 bg-gold/30" />

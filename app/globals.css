@@ -55,41 +55,41 @@
 }
 
 :root {
-  --background: oklch(0.13 0.02 265);
---foreground: oklch(0.95 0.012 85);
---card: oklch(0.17 0.025 265);
---card-foreground: oklch(0.95 0.012 85);
---popover: oklch(0.15 0.022 265);
---popover-foreground: oklch(0.95 0.012 85);
---primary: oklch(0.78 0.12 85);
---primary-foreground: oklch(0.13 0.02 265);
---secondary: oklch(0.22 0.03 265);
---secondary-foreground: oklch(0.95 0.012 85);
---muted: oklch(0.2 0.025 265);
---muted-foreground: oklch(0.68 0.02 85);
---accent: oklch(0.62 0.18 250);
---accent-foreground: oklch(0.98 0.005 85);
---destructive: oklch(0.577 0.245 27.325);
---border: oklch(0.78 0.12 85 / 18%);
---input: oklch(0.78 0.12 85 / 15%);
---ring: oklch(0.78 0.12 85);
---gold: oklch(0.78 0.12 85);
---royal: oklch(0.58 0.2 252);
---cream: oklch(0.95 0.012 85);
---chart-1: oklch(0.78 0.12 85);
---chart-2: oklch(0.58 0.2 252);
---chart-3: oklch(0.55 0.1 85);
---chart-4: oklch(0.45 0.14 250);
---chart-5: oklch(0.7 0.08 85);
---radius: 0.25rem;
---sidebar: oklch(0.15 0.022 265);
---sidebar-foreground: oklch(0.95 0.012 85);
---sidebar-primary: oklch(0.78 0.12 85);
---sidebar-primary-foreground: oklch(0.13 0.02 265);
---sidebar-accent: oklch(0.22 0.03 265);
---sidebar-accent-foreground: oklch(0.95 0.012 85);
---sidebar-border: oklch(0.78 0.12 85 / 18%);
---sidebar-ring: oklch(0.78 0.12 85);
+  --background: oklch(0.95 0.012 85);
+  --foreground: oklch(0.13 0.02 265);
+  --card: oklch(0.98 0.005 85);
+  --card-foreground: oklch(0.13 0.02 265);
+  --popover: oklch(0.98 0.005 85);
+  --popover-foreground: oklch(0.13 0.02 265);
+  --primary: oklch(0.13 0.02 265);
+  --primary-foreground: oklch(0.95 0.012 85);
+  --secondary: oklch(0.90 0.01 85);
+  --secondary-foreground: oklch(0.13 0.02 265);
+  --muted: oklch(0.90 0.01 85);
+  --muted-foreground: oklch(0.45 0.02 265);
+  --accent: oklch(0.90 0.01 85);
+  --accent-foreground: oklch(0.13 0.02 265);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.13 0.02 265 / 18%);
+  --input: oklch(0.13 0.02 265 / 15%);
+  --ring: oklch(0.13 0.02 265);
+  --gold: oklch(0.78 0.12 85);
+  --royal: oklch(0.45 0.15 252);
+  --cream: oklch(0.95 0.012 85);
+  --chart-1: oklch(0.78 0.12 85);
+  --chart-2: oklch(0.45 0.15 252);
+  --chart-3: oklch(0.55 0.1 85);
+  --chart-4: oklch(0.45 0.14 250);
+  --chart-5: oklch(0.7 0.08 85);
+  --radius: 0.25rem;
+  --sidebar: oklch(0.98 0.005 85);
+  --sidebar-foreground: oklch(0.13 0.02 265);
+  --sidebar-primary: oklch(0.13 0.02 265);
+  --sidebar-primary-foreground: oklch(0.95 0.012 85);
+  --sidebar-accent: oklch(0.90 0.01 85);
+  --sidebar-accent-foreground: oklch(0.13 0.02 265);
+  --sidebar-border: oklch(0.13 0.02 265 / 18%);
+  --sidebar-ring: oklch(0.13 0.02 265);
 }
 
 .dark {
@@ -291,10 +291,12 @@ html {
   background-color: oklch(0.13 0.02 265);
 }
 
-@media (prefers-color-scheme: light) {
+
+/* LIGHT CLASS OVERRIDE - html.light */
+
 
   /* ── Variables globales clair ─────────────────────────────── */
-  :root {
+  html.light {
     --background:           oklch(0.95 0.008 85);
     --foreground:           oklch(0.20 0.01 0);    /* #222222 */
     --card:                 oklch(0.97 0.005 85);
@@ -316,12 +318,12 @@ html {
   }
 
   /* ── Heritage ─────────────────────────────────────────────── */
-  .heritage-bg {
+  html.light .heritage-bg {
     background-color: oklch(0.88 0.015 255);
   }
 
   /* ── About — ivoire chaud ─────────────────────────────────── */
-  .s-about {
+  html.light .s-about {
     background-color:   oklch(0.91 0.010 85);
     color:              oklch(0.16 0.03 265);
     --foreground:       oklch(0.16 0.03 265);
@@ -335,7 +337,7 @@ html {
   }
 
   /* ── Gallery — crème lumineuse ───────────────────────────── */
-  .s-gallery {
+  html.light .s-gallery {
     background-color: oklch(0.93 0.006 85);
     background-image:
       radial-gradient(ellipse 55% 45% at 15% 60%, oklch(0.52 0.13 78 / 0.06) 0%, transparent 60%),
@@ -348,7 +350,7 @@ html {
   }
 
   /* ── Program — ardoise douce ─────────────────────────────── */
-  .s-program {
+  html.light .s-program {
     background-color:   oklch(0.89 0.012 255);
     color:              oklch(0.16 0.03 265);
     --foreground:       oklch(0.16 0.03 265);
@@ -362,7 +364,7 @@ html {
   }
 
   /* ── Invitation — ivoire neutre ──────────────────────────── */
-  .s-invitation {
+  html.light .s-invitation {
     background-color:   oklch(0.92 0.008 85);
     color:              oklch(0.16 0.03 265);
     --foreground:       oklch(0.16 0.03 265);
@@ -375,7 +377,7 @@ html {
   }
 
   /* ── Section-light compat ────────────────────────────────── */
-  .section-light {
+  html.light .section-light {
     background-color:   oklch(0.91 0.010 85);
     color:              oklch(0.16 0.03 265);
     --foreground:       oklch(0.16 0.03 265);
@@ -383,7 +385,7 @@ html {
     --gold:             oklch(0.72 0.14 82);
     --royal:            oklch(0.56 0.22 258);
   }
-}
+
 
 /* ══════════════════════════════════════════════════════════════
    DARK CLASS OVERRIDE — html.dark (plus haute spécificité)
