@@ -99,13 +99,15 @@ export function Invitation() {
                         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center pl-4 text-muted-foreground/50">
                           <Users className="size-4" />
                         </div>
-                        <Select name="seats">
+                        <Select name="ticket">
                           <SelectTrigger className="flex h-[54px] w-full items-center justify-between rounded-xl border border-border bg-transparent py-4 pl-11 pr-4 text-sm font-normal text-foreground outline-none transition-all hover:bg-transparent focus:border-royal focus:ring-1 focus:ring-royal focus-visible:ring-1 focus-visible:ring-royal">
-                            <SelectValue placeholder={t("invitation.form.seats")} />
+                            <SelectValue placeholder={t("invitation.form.ticket_type")} />
                           </SelectTrigger>
                           <SelectContent position="popper" sideOffset={4}>
-                            <SelectItem value="solo">{t("invitation.form.seats.solo")}</SelectItem>
-                            <SelectItem value="couple">{t("invitation.form.seats.couple")}</SelectItem>
+                            <SelectItem value="standard">{t("invitation.form.ticket.standard")}</SelectItem>
+                            <SelectItem value="vip">{t("invitation.form.ticket.vip")}</SelectItem>
+                            <SelectItem value="soutien">{t("invitation.form.ticket.soutien")}</SelectItem>
+                            <SelectItem value="couple">{t("invitation.form.ticket.couple")}</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>

@@ -8,13 +8,13 @@ export const translations = {
     "nav.gallery": "GALERIE",
     "nav.program": "PROGRAMME",
     "nav.venue": "LE LIEU",
-    "nav.invite_button": "DEMANDER UNE INVITATION",
+    "nav.invite_button": "PRÉ-RÉSERVER",
 
     // Hero
     "hero.title": "Ans d'Impact",
     "hero.subtitle_line1": "Honorer l'Héritage,",
     "hero.subtitle_line2": "Inspirer l'Avenir",
-    "hero.cta": "Réserver ma place",
+    "hero.cta": "Pré-réserver gratuitement",
     "hero.location_label": "Cotonou · Bénin · Tenue de soirée",
     "hero.scroll_cue": "Découvrir",
 
@@ -86,8 +86,8 @@ export const translations = {
 
     // Invitation
     "invitation.subtitle": "Rejoignez-nous",
-    "invitation.title": "Demander une Invitation",
-    "invitation.text": "Les places sont strictement limitées. Renseignez vos informations et notre comité reviendra vers vous avec votre confirmation.",
+    "invitation.title": "Pré-réservation gratuite",
+    "invitation.text": "Afin d'aider le comité d'organisation à évaluer le nombre de participants, veuillez effectuer une pré-réservation gratuite de votre ticket. Le paiement ne sera demandé que plus tard.",
     "invitation.success_title": "Demande envoyée",
     "invitation.success_text": "Merci pour votre intérêt. Notre comité examinera votre demande et vous recontactera très prochainement.",
     "invitation.form.firstname": "Prénom",
@@ -100,11 +100,13 @@ export const translations = {
     "invitation.form.role.a3": "AIESECer MCP/MCVP",
     "invitation.form.role.alumni": "Alumni",
     "invitation.form.role.external": "Externe",
-    "invitation.form.seats": "Nombre de places",
-    "invitation.form.seats.solo": "Solo",
-    "invitation.form.seats.couple": "Couple",
-    "invitation.form.submit": "Demander mon Invitation",
-    "invitation.form.hint": "Les places étant limitées, votre demande sera soumise à validation.",
+    "invitation.form.ticket_type": "Type de ticket à réserver",
+    "invitation.form.ticket.standard": "Standard : 10.000 FCFA",
+    "invitation.form.ticket.vip": "VIP : 20.000 FCFA",
+    "invitation.form.ticket.soutien": "SOUTIEN : 50.000 FCFA",
+    "invitation.form.ticket.couple": "Couple : 15.000 FCFA",
+    "invitation.form.submit": "Valider ma pré-réservation",
+    "invitation.form.hint": "Aucun paiement n'est requis à cette étape. C'est une pré-réservation à but d'évaluation.",
 
     // Footer
     "footer.text": "Gala des 20 ans d'impact — Une célébration du leadership des jeunes, du passé à l'avenir.",
@@ -118,13 +120,13 @@ export const translations = {
     "nav.gallery": "GALLERY",
     "nav.program": "PROGRAM",
     "nav.venue": "VENUE",
-    "nav.invite_button": "REQUEST AN INVITATION",
+    "nav.invite_button": "PRE-RESERVE",
 
     // Hero
     "hero.title": "Years of Impact",
     "hero.subtitle_line1": "Honoring the Heritage,",
     "hero.subtitle_line2": "Inspiring the Future",
-    "hero.cta": "Reserve my seat",
+    "hero.cta": "Pre-reserve for free",
     "hero.location_label": "Cotonou · Benin · Evening Dress",
     "hero.scroll_cue": "Discover",
 
@@ -196,8 +198,8 @@ export const translations = {
 
     // Invitation
     "invitation.subtitle": "Join us",
-    "invitation.title": "Request an Invitation",
-    "invitation.text": "Seats are strictly limited. Fill in your information and our committee will get back to you with your confirmation.",
+    "invitation.title": "Free Pre-reservation",
+    "invitation.text": "To help the organizing committee evaluate the number of attendees, please make a free pre-reservation for your ticket. Payment will only be requested later.",
     "invitation.success_title": "Request sent",
     "invitation.success_text": "Thank you for your interest. Our committee will review your request and contact you very soon.",
     "invitation.form.firstname": "First Name",
@@ -210,11 +212,13 @@ export const translations = {
     "invitation.form.role.a3": "AIESECer MCP/MCVP",
     "invitation.form.role.alumni": "Alumni",
     "invitation.form.role.external": "External",
-    "invitation.form.seats": "Number of seats",
-    "invitation.form.seats.solo": "Solo",
-    "invitation.form.seats.couple": "Couple",
-    "invitation.form.submit": "Request my Invitation",
-    "invitation.form.hint": "As seats are limited, your request will be subject to validation.",
+    "invitation.form.ticket_type": "Ticket type to reserve",
+    "invitation.form.ticket.standard": "Standard : 10.000 FCFA",
+    "invitation.form.ticket.vip": "VIP : 20.000 FCFA",
+    "invitation.form.ticket.soutien": "SUPPORT : 50.000 FCFA",
+    "invitation.form.ticket.couple": "Couple : 15.000 FCFA",
+    "invitation.form.submit": "Confirm my pre-reservation",
+    "invitation.form.hint": "No payment is required at this stage. This is a pre-reservation for evaluation purposes.",
 
     // Footer
     "footer.text": "20 Years of Impact Gala — A celebration of youth leadership, from the past to the future.",
