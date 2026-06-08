@@ -14,6 +14,8 @@ import { useLanguage } from "@/lib/i18n"
 const SILK_DARK = "#1a3a7a"
 const SILK_LIGHT = "#ffffff"   // blanc pur, fond clair
 
+import { motion } from "framer-motion"
+
 export function Hero() {
   const { t } = useLanguage()
   const [silkColor, setSilkColor] = useState(SILK_DARK)
@@ -31,13 +33,44 @@ export function Hero() {
     return () => { observer.disconnect() }
   }, [])
 
+  const TypewriterText = ({ text, delay = 0 }: { text: string, delay?: number }) => (
+    <motion.span
+      initial="hidden"
+      animate="visible"
+      variants={{
+        hidden: { opacity: 0 },
+        visible: {
+          opacity: 1,
+          transition: { staggerChildren: 0.04, delayChildren: delay },
+        },
+      }}
+    >
+      {text.split("").map((char, index) => (
+        <motion.span
+          key={index}
+          variants={{
+            hidden: { opacity: 0, y: 5 },
+            visible: { opacity: 1, y: 0 },
+          }}
+        >
+          {char}
+        </motion.span>
+      ))}
+    </motion.span>
+  )
+
   return (
     <section className="relative flex min-h-screen flex-col overflow-hidden bg-background">
 
       {/* ── Silk WebGL ────────────────────────────────────── */}
-      <div className="absolute inset-0 z-0">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2 }}
+        className="absolute inset-0 z-0"
+      >
         <Silk speed={2.5} scale={1} color={silkColor} noiseIntensity={1.5} rotation={1.1} />
-      </div>
+      </motion.div>
 
       {/* ── Halo protecteur (Lisibilité) ────────────────────
          Ce gradient radial crée un fond opaque au centre (pour les textes)
@@ -53,46 +86,79 @@ export function Hero() {
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 text-center">
 
         {/* Big number */}
-        <span className="font-heading text-[6rem] font-black leading-none text-[oklch(0.32_0.12_258)]/30 drop-shadow-sm dark:text-cream/20 sm:text-[10rem] lg:text-[14rem]">
+        <motion.span
+          initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="font-heading text-[6rem] font-black leading-none text-[oklch(0.32_0.12_258)]/30 drop-shadow-sm dark:text-cream/20 sm:text-[10rem] lg:text-[14rem]"
+        >
           20
-        </span>
+        </motion.span>
 
         {/* Title overlaid on the big number */}
         <div className="-mt-8 sm:-mt-12 lg:-mt-16">
-          <h1 className="font-heading text-3xl font-bold text-[oklch(0.32_0.12_258)] drop-shadow-sm dark:text-cream sm:text-5xl lg:text-6xl">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+            className="font-heading text-3xl font-bold text-[oklch(0.32_0.12_258)] drop-shadow-sm dark:text-cream sm:text-5xl lg:text-6xl"
+          >
             {t("hero.title")}
-          </h1>
+          </motion.h1>
           <p className="mt-3 font-script text-3xl text-gold drop-shadow-sm sm:text-4xl lg:text-5xl">
-            {t("hero.subtitle_line1")}
+            <TypewriterText text={t("hero.subtitle_line1")} delay={0.8} />
             <br />
-            {t("hero.subtitle_line2")}
+            <TypewriterText text={t("hero.subtitle_line2")} delay={1.5} />
           </p>
         </div>
 
         {/* Divider */}
-        <div className="mx-auto mt-8 h-px w-12 bg-gold/40 sm:mt-10 sm:w-16" />
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: 1, opacity: 1 }}
+          transition={{ duration: 1, delay: 2, ease: "easeInOut" }}
+          className="mx-auto mt-8 h-px w-12 bg-gold/40 sm:mt-10 sm:w-16"
+        />
 
         {/* Countdown */}
-        <div className="mt-8 sm:mt-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 2.2, ease: "easeOut" }}
+          className="mt-8 sm:mt-10"
+        >
           <Countdown />
-        </div>
+        </motion.div>
 
         {/* Single CTA */}
-        <a
+        <motion.a
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 2.6, ease: "backOut" }}
           href="#invitation"
           className="mt-10 inline-block border border-gold/50 bg-background/30 px-10 py-4 text-[0.65rem] font-bold uppercase tracking-[0.35em] text-gold shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gold hover:text-primary-foreground hover:shadow-gold/20 sm:mt-12"
         >
           {t("hero.cta")}
-        </a>
+        </motion.a>
 
         {/* Location */}
-        <p className="mt-8 text-[0.65rem] font-bold uppercase tracking-[0.4em] text-[oklch(0.32_0.12_258)] dark:text-cream/40">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 3 }}
+          className="mt-8 text-[0.65rem] font-bold uppercase tracking-[0.4em] text-[oklch(0.32_0.12_258)] dark:text-cream/40"
+        >
           {t("hero.location_label")}
-        </p>
+        </motion.p>
       </div>
 
       {/* ── Bottom — scroll cue ───────────────────────────── */}
-      <div className="relative z-10 flex justify-center pb-8">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 3.5 }}
+        className="relative z-10 flex justify-center pb-8"
+      >
         <a
           href="#apropos"
           className="flex flex-col items-center gap-2 text-[oklch(0.32_0.12_258)] transition-colors hover:text-gold dark:text-cream/40"
@@ -100,7 +166,7 @@ export function Hero() {
           <span className="text-[0.55rem] font-bold uppercase tracking-[0.4em]">{t("hero.scroll_cue")}</span>
           <span className="block h-8 w-px animate-shimmer bg-gradient-to-b from-[oklch(0.32_0.12_258)] to-transparent dark:from-cream/50" />
         </a>
-      </div>
+      </motion.div>
     </section>
   )
 }
