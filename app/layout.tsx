@@ -40,7 +40,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${fontHeading.variable} ${fontScript.variable} ${fontSans.variable}`}
     >
-      <body className="antialiased bg-background font-sans">
+      <body suppressHydrationWarning className="antialiased bg-background font-sans">
         <ThemeProvider>
           <LanguageProvider>
             {children}
