@@ -16,39 +16,75 @@ type Photo = {
 
 const photos: Photo[] = [
   {
-    src: "/images/gallery-1.png",
-    alt: "Invités applaudissant lors du dîner de gala",
-    edition: "Édition 2024",
+    src: "/images/gala_archive (1).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
     span: "col-span-2 row-span-2",
   },
   {
-    src: "/images/gallery-2.png",
-    alt: "Cérémonie de remise des prix sur scène",
-    edition: "Édition 2023",
+    src: "/images/gala_archive (2).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
     span: "col-span-1 row-span-1",
   },
   {
-    src: "/images/gallery-3.png",
-    alt: "Invités élégants lors de la soirée",
-    edition: "Édition 2023",
+    src: "/images/gala_archive (3).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
     span: "col-span-1 row-span-1",
   },
   {
-    src: "/images/gallery-4.png",
-    alt: "Tables de banquet dressées avec élégance",
-    edition: "Édition 2022",
+    src: "/images/gala_archive (4).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
     span: "col-span-1 row-span-1",
   },
   {
-    src: "/images/gallery-5.png",
-    alt: "Orchestre en représentation",
-    edition: "Édition 2022",
+    src: "/images/gala_archive (5).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
     span: "col-span-2 row-span-1",
   },
   {
-    src: "/images/gallery-6.png",
-    alt: "Photo de groupe des leaders AIESEC",
-    edition: "Édition 2021",
+    src: "/images/gala_archive (6).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1",
+  },
+  {
+    src: "/images/gala_archive (7).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-2",
+  },
+  {
+    src: "/images/gala_archive (8).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-2",
+  },
+  {
+    src: "/images/gala_archive (9).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1",
+  },
+  {
+    src: "/images/gala_archive (10).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-1",
+  },
+  {
+    src: "/images/gala_archive (11).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1",
+  },
+  {
+    src: "/images/gala_archive (12).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
     span: "col-span-1 row-span-1",
   },
 ]
@@ -94,18 +130,12 @@ function MobileCarousel({ onOpen }: { onOpen: (i: number) => void }) {
                   alt={photo.alt}
                   fill
                   sizes="78vw"
-                  className="object-cover transition-transform duration-700 group-active:scale-105"
+                  className="object-cover object-top transition-transform duration-700 group-active:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
                 {/* zoom icon */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-active:opacity-100 transition-opacity">
                   <ZoomIn className="size-8 text-gold drop-shadow-lg" />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-4">
-                  <span className="block font-heading text-[0.55rem] uppercase tracking-[0.3em] text-gold">
-                    {photo.edition}
-                  </span>
-                  <p className="mt-1 text-xs text-cream/70 line-clamp-1">{photo.alt}</p>
                 </div>
                 <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-gold/0 transition-all duration-500 group-active:ring-gold/50" />
               </div>
@@ -135,54 +165,62 @@ function MobileCarousel({ onOpen }: { onOpen: (i: number) => void }) {
 
 /* ── Desktop Editorial Grid ──────────────────────────────── */
 function DesktopGrid({ onOpen }: { onOpen: (i: number) => void }) {
+  const [showAll, setShowAll] = useState(false)
+  const visiblePhotos = showAll ? photos : photos.slice(0, 6)
+
   return (
-    <div className="mt-12 grid auto-rows-[180px] grid-cols-4 gap-3 lg:auto-rows-[200px] lg:gap-4">
-      {photos.map((photo, i) => (
-        <button
-          key={photo.src}
-          onClick={() => onOpen(i)}
-          className={`group relative overflow-hidden rounded-sm border border-gold/10 ${photo.span}`}
-          aria-label={`Agrandir : ${photo.alt}`}
-          suppressHydrationWarning
-        >
-          {/* Photo */}
-          <Image
-            src={photo.src}
-            alt={photo.alt}
-            fill
-            sizes="40vw"
-            className="object-cover transition-transform duration-700 ease-out will-change-transform group-hover:scale-110"
-          />
+    <div>
+      <div className="mt-12 grid auto-rows-[180px] grid-cols-4 gap-3 lg:auto-rows-[200px] lg:gap-4">
+        {visiblePhotos.map((photo, i) => (
+          <button
+            key={photo.src}
+            onClick={() => onOpen(i)}
+            className={`group relative overflow-hidden rounded-sm border border-gold/10 ${photo.span}`}
+            aria-label={`Agrandir : ${photo.alt}`}
+            suppressHydrationWarning
+          >
+            {/* Photo */}
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              fill
+              sizes="40vw"
+              className="object-cover object-top transition-transform duration-700 ease-out will-change-transform group-hover:scale-110"
+            />
 
-          {/* Dark overlay — light by default, dark on hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-transparent opacity-40 transition-opacity duration-500 group-hover:opacity-100" />
+            {/* Dark overlay — light by default, dark on hover */}
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-transparent opacity-40 transition-opacity duration-500 group-hover:opacity-100" />
 
-          {/* Top — index */}
-          <div className="absolute left-3 top-3 z-10 opacity-0 transition-all duration-400 group-hover:opacity-100">
-            <span className="font-heading text-[0.55rem] tracking-[0.3em] text-cream/50">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-          </div>
+            {/* Top — index */}
+            <div className="absolute left-3 top-3 z-10 opacity-0 transition-all duration-400 group-hover:opacity-100">
+              <span className="font-heading text-[0.55rem] tracking-[0.3em] text-cream/50">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            </div>
 
-          {/* Center — zoom icon */}
-          <div className="absolute inset-0 z-10 flex items-center justify-center opacity-0 transition-opacity duration-400 group-hover:opacity-100">
-            <span className="flex size-10 items-center justify-center rounded-full border border-gold/50 bg-background/30 backdrop-blur-sm">
-              <ZoomIn className="size-4 text-gold" />
-            </span>
-          </div>
+            {/* Center — zoom icon */}
+            <div className="absolute inset-0 z-10 flex items-center justify-center opacity-0 transition-opacity duration-400 group-hover:opacity-100">
+              <span className="flex size-10 items-center justify-center rounded-full border border-gold/50 bg-background/30 backdrop-blur-sm">
+                <ZoomIn className="size-4 text-gold" />
+              </span>
+            </div>
 
-          {/* Bottom — label slides up */}
-          <div className="absolute inset-x-0 bottom-0 z-10 translate-y-3 p-4 opacity-0 transition-all duration-400 ease-out group-hover:translate-y-0 group-hover:opacity-100">
-            <span className="block font-heading text-[0.6rem] uppercase tracking-[0.25em] text-gold">
-              {photo.edition}
-            </span>
-            <p className="mt-1 text-xs text-cream/70 line-clamp-2">{photo.alt}</p>
-          </div>
-
-          {/* Gold border on hover */}
-          <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-gold/0 transition-all duration-500 group-hover:ring-gold/40" />
-        </button>
-      ))}
+            {/* Gold border on hover */}
+            <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-gold/0 transition-all duration-500 group-hover:ring-gold/40" />
+          </button>
+        ))}
+      </div>
+      
+      {!showAll && photos.length > 6 && (
+        <div className="mt-12 flex justify-center pb-4">
+          <button
+            onClick={() => setShowAll(true)}
+            className="rounded-full border border-gold px-8 py-3 text-xs uppercase tracking-[0.2em] text-gold transition-colors hover:bg-gold hover:text-background"
+          >
+            Voir plus de photos
+          </button>
+        </div>
+      )}
     </div>
   )
 }
@@ -291,13 +329,13 @@ export function Gallery() {
             className="relative mx-16 max-h-[82vh] w-full max-w-4xl sm:mx-20"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm border border-gold/20 sm:aspect-[3/2]">
+            <div className="relative flex h-[60vh] w-full items-center justify-center overflow-hidden rounded-sm border border-gold/20 bg-background/50 sm:h-[75vh]">
               <Image
                 src={photos[active].src}
                 alt={photos[active].alt}
                 fill
                 sizes="100vw"
-                className="object-cover"
+                className="object-contain"
                 priority
               />
             </div>
