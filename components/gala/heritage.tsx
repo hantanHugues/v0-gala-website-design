@@ -3,7 +3,7 @@ import { DynamicRipple } from "@/components/ui/dynamic-ripple"
 
 const milestones = [
   {
-    year: "2006",
+    year: "2005",
     title: "Les Fondations",
     text: "Naissance d'AIESEC in Benin et des premiers échanges internationaux portés par une poignée de visionnaires.",
   },

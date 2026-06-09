@@ -1,0 +1,242 @@
+const photos: Photo[] = [
+  {
+    src: "/images/Gala_ancienne_edition (1).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-2"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (2).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (3).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (4).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-2"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (5).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (6).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (7).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-2"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (8).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (9).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (10).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-2"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (11).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (12).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (13).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-2"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (14).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (15).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (16).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-2"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (17).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (18).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (19).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-2"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (20).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (21).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (22).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-2"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (23).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (24).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (25).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-2"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (26).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (27).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-1"
+  },
+  {
+    src: "/images/Gala_ancienne_edition (28).jpeg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-2"
+  },
+  {
+    src: "/images/gala_archive (1).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/gala_archive (2).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/gala_archive (3).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-2"
+  },
+  {
+    src: "/images/gala_archive (4).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-1"
+  },
+  {
+    src: "/images/gala_archive (5).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/gala_archive (6).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-2"
+  },
+  {
+    src: "/images/gala_archive (7).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/gala_archive (8).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-1"
+  },
+  {
+    src: "/images/gala_archive (9).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-2 row-span-2"
+  },
+  {
+    src: "/images/gala_archive (10).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/gala_archive (11).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-1"
+  },
+  {
+    src: "/images/gala_archive (12).jpg",
+    alt: "AIESEC in Benin - Gala Archives",
+    edition: "Éditions passées",
+    span: "col-span-1 row-span-2"
+  }
+]
