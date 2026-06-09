@@ -66,11 +66,12 @@ export function Hero() {
         transition={{ duration: 2 }}
         className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden"
       >
-        {isDark ? (
+        {mounted && isDark && (
           <div className="absolute inset-0">
             <Silk speed={2.5} scale={1} color={silkColor} noiseIntensity={1.5} rotation={1.1} />
           </div>
-        ) : (
+        )}
+        {mounted && !isDark && (
           <div className="absolute inset-0 w-full h-full">
             <LightPillar
               topColor="#D4AF37"
