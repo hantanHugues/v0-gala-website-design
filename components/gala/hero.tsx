@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { Countdown } from "./countdown"
 
 const Silk = dynamic(() => import("@/components/silk"), { ssr: false })
+const LightPillar = dynamic(() => import("@/components/LightPillar"), { ssr: false })
 
 /* Couleur Silk par thème :
    Dark  → navy profond pour le fond sombre
@@ -15,23 +16,19 @@ const SILK_DARK = "#1a3a7a"
 const SILK_LIGHT = "#ffffff"   // blanc pur, fond clair
 
 import { motion } from "framer-motion"
+import { useTheme } from "next-themes"
 
 export function Hero() {
   const { t } = useLanguage()
-  const [silkColor, setSilkColor] = useState(SILK_DARK)
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const update = () => {
-      const dark = document.documentElement.classList.contains("dark")
-      setSilkColor(!dark ? SILK_LIGHT : SILK_DARK)
-    }
-    update()
-
-    const observer = new MutationObserver(update)
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] })
-
-    return () => { observer.disconnect() }
+    setMounted(true)
   }, [])
+
+  const isDark = mounted ? resolvedTheme === "dark" : true
+  const silkColor = !isDark ? SILK_LIGHT : SILK_DARK
 
   const TypewriterText = ({ text, delay = 0 }: { text: string, delay?: number }) => (
     <motion.span
@@ -62,14 +59,33 @@ export function Hero() {
   return (
     <section className="relative flex min-h-screen flex-col overflow-hidden bg-background">
 
-      {/* ── Silk WebGL ────────────────────────────────────── */}
+      {/* ── Background Animations ────────────────────────────────────── */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 2 }}
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden"
       >
-        <Silk speed={2.5} scale={1} color={silkColor} noiseIntensity={1.5} rotation={1.1} />
+        {isDark ? (
+          <div className="absolute inset-0">
+            <Silk speed={2.5} scale={1} color={silkColor} noiseIntensity={1.5} rotation={1.1} />
+          </div>
+        ) : (
+          <div className="absolute inset-0 w-full h-full">
+            <LightPillar
+              topColor="#D4AF37"
+              bottomColor="#037EF3"
+              intensity={1}
+              rotationSpeed={0.4}
+              interactive
+              glowAmount={0.005}
+              pillarWidth={8}
+              pillarHeight={0.4}
+              noiseIntensity={0}
+              pillarRotation={0}
+            />
+          </div>
+        )}
       </motion.div>
 
       {/* ── Halo protecteur (Lisibilité) ────────────────────
