@@ -35,7 +35,7 @@ export function Invitation() {
         firstName: formData.get("firstName"),
         lastName: formData.get("lastName"),
         email: formData.get("email"),
-        phone: formData.get("phone"),
+        phone: phoneValue, // Envoie le numéro complet avec l'indicatif (ex: +229...)
         role: formData.get("role"),
         ticketType: formData.get("ticket"),
       }
