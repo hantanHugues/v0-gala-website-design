@@ -116,20 +116,6 @@ async function initializeSheetIfEmpty(spreadsheetId: string, sheetName: string, 
                 }
               },
               {
-                updateDimensionProperties: {
-                  range: { sheetId: sheetId, dimension: "COLUMNS", startIndex: 0, endIndex: 8 },
-                  properties: { pixelSize: 160 },
-                  fields: "pixelSize"
-                }
-              },
-              {
-                updateDimensionProperties: {
-                  range: { sheetId: sheetId, dimension: "COLUMNS", startIndex: 2, endIndex: 3 },
-                  properties: { pixelSize: 280 }, // Email column wider
-                  fields: "pixelSize"
-                }
-              },
-              {
                 repeatCell: {
                   range: { sheetId: sheetId, startRowIndex: 1, startColumnIndex: 0, endColumnIndex: 8 },
                   cell: { userEnteredFormat: { wrapStrategy: "WRAP" } },
@@ -179,6 +165,71 @@ async function initializeSheetIfEmpty(spreadsheetId: string, sheetName: string, 
                     showCustomUi: true,
                     strict: false
                   }
+                }
+              },
+              // Couleurs pour Status "pending"
+              {
+                addConditionalFormatRule: {
+                  rule: {
+                    ranges: [{ sheetId: sheetId, startRowIndex: 1, startColumnIndex: 6, endColumnIndex: 7 }],
+                    booleanRule: {
+                      condition: { type: "TEXT_EQ", values: [{ userEnteredValue: "pending" }] },
+                      format: { backgroundColor: { red: 1.0, green: 0.95, blue: 0.8 }, textFormat: { foregroundColor: { red: 0.6, green: 0.4, blue: 0.0 }, bold: true } }
+                    }
+                  },
+                  index: 0
+                }
+              },
+              // Couleurs pour Status "paid"
+              {
+                addConditionalFormatRule: {
+                  rule: {
+                    ranges: [{ sheetId: sheetId, startRowIndex: 1, startColumnIndex: 6, endColumnIndex: 7 }],
+                    booleanRule: {
+                      condition: { type: "TEXT_EQ", values: [{ userEnteredValue: "paid" }] },
+                      format: { backgroundColor: { red: 0.85, green: 1.0, blue: 0.85 }, textFormat: { foregroundColor: { red: 0.0, green: 0.5, blue: 0.0 }, bold: true } }
+                    }
+                  },
+                  index: 1
+                }
+              },
+              // Couleurs pour Status "cancelled"
+              {
+                addConditionalFormatRule: {
+                  rule: {
+                    ranges: [{ sheetId: sheetId, startRowIndex: 1, startColumnIndex: 6, endColumnIndex: 7 }],
+                    booleanRule: {
+                      condition: { type: "TEXT_EQ", values: [{ userEnteredValue: "cancelled" }] },
+                      format: { backgroundColor: { red: 1.0, green: 0.85, blue: 0.85 }, textFormat: { foregroundColor: { red: 0.6, green: 0.0, blue: 0.0 }, bold: true } }
+                    }
+                  },
+                  index: 2
+                }
+              },
+              // Couleurs pour TicketType "solo"
+              {
+                addConditionalFormatRule: {
+                  rule: {
+                    ranges: [{ sheetId: sheetId, startRowIndex: 1, startColumnIndex: 5, endColumnIndex: 6 }],
+                    booleanRule: {
+                      condition: { type: "TEXT_EQ", values: [{ userEnteredValue: "solo" }] },
+                      format: { backgroundColor: { red: 0.9, green: 0.95, blue: 1.0 }, textFormat: { foregroundColor: { red: 0.0, green: 0.3, blue: 0.7 }, bold: true } }
+                    }
+                  },
+                  index: 3
+                }
+              },
+              // Couleurs pour TicketType "couple"
+              {
+                addConditionalFormatRule: {
+                  rule: {
+                    ranges: [{ sheetId: sheetId, startRowIndex: 1, startColumnIndex: 5, endColumnIndex: 6 }],
+                    booleanRule: {
+                      condition: { type: "TEXT_EQ", values: [{ userEnteredValue: "couple" }] },
+                      format: { backgroundColor: { red: 0.95, green: 0.85, blue: 1.0 }, textFormat: { foregroundColor: { red: 0.4, green: 0.0, blue: 0.6 }, bold: true } }
+                    }
+                  },
+                  index: 4
                 }
               }
             ],
