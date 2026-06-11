@@ -30,7 +30,7 @@ async function initializeSheetIfEmpty(spreadsheetId: string, sheetName: string, 
   try {
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
-      range: `${sheetName}!A1:H1`,
+      range: `'${sheetName}'!A1:H1`,
     });
 
     const rows = response.data.values;
@@ -51,7 +51,7 @@ async function initializeSheetIfEmpty(spreadsheetId: string, sheetName: string, 
 
       await sheets.spreadsheets.values.update({
         spreadsheetId,
-        range: `${sheetName}!A1:H1`,
+        range: `'${sheetName}'!A1:H1`,
         valueInputOption: 'RAW',
         requestBody: {
           values: [headers],
@@ -129,11 +129,11 @@ async function initializeSheetIfEmpty(spreadsheetId: string, sheetName: string, 
                     condition: {
                       type: "ONE_OF_LIST",
                       values: [
-                        { userEnteredValue: "aiesecer_lcp_lcvp" },
-                        { userEnteredValue: "aiesecer_eb_member" },
-                        { userEnteredValue: "alumni" },
-                        { userEnteredValue: "partner" },
-                        { userEnteredValue: "external" }
+                        { userEnteredValue: "AIESECer TM/TL" },
+                        { userEnteredValue: "AIESECer LCP/LCVP" },
+                        { userEnteredValue: "AIESECer MCP/MCVP" },
+                        { userEnteredValue: "Alumni" },
+                        { userEnteredValue: "Externe" }
                       ]
                     },
                     showCustomUi: true,
@@ -260,12 +260,22 @@ export async function POST(request: Request) {
 
     const formattedPhone = phone.startsWith('+') ? "'" + phone : phone;
 
+    // Formater le rôle pour l'affichage lisible dans Google Sheets
+    const roleMap: Record<string, string> = {
+      'aiesecer_tm_tl': 'AIESECer TM/TL',
+      'aiesecer_lcp_lcvp': 'AIESECer LCP/LCVP',
+      'aiesecer_mcp_mcvp': 'AIESECer MCP/MCVP',
+      'alumni': 'Alumni',
+      'externe': 'Externe'
+    };
+    const formattedRole = roleMap[role] || role;
+
     const rowData = [
       firstName,
       lastName,
       email,
       formattedPhone,
-      role,
+      formattedRole,
       ticketType,
       'pending', // Status initial
       new Date().toISOString()
@@ -273,33 +283,13 @@ export async function POST(request: Request) {
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: SPREADSHEET_ID,
-      range: `${sheetName}!A:H`,
+      range: `'${sheetName}'!A:H`,
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [rowData],
       },
     });
 
-    // Redimensionnement automatique des colonnes pour qu'elles s'adaptent au contenu
-    if (sheetId !== null && sheetId !== undefined) {
-      await sheets.spreadsheets.batchUpdate({
-        spreadsheetId: SPREADSHEET_ID,
-        requestBody: {
-          requests: [
-            {
-              autoResizeDimensions: {
-                dimensions: {
-                  sheetId: sheetId,
-                  dimension: "COLUMNS",
-                  startIndex: 0,
-                  endIndex: 8
-                }
-              }
-            }
-          ]
-        }
-      });
-    }
 
     return NextResponse.json({ success: true });
   } catch (error: any) {
