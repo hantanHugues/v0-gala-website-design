@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/select"
 
 import { PhoneInput } from "@/components/ui/phone-input"
-import { isValidPhoneNumber } from "react-phone-number-input"
+import { isValidPhoneNumber, formatPhoneNumberIntl } from "react-phone-number-input"
 
 export function Invitation() {
   const { t } = useLanguage()
@@ -35,7 +35,7 @@ export function Invitation() {
         firstName: formData.get("firstName"),
         lastName: formData.get("lastName"),
         email: formData.get("email"),
-        phone: phoneValue, // Envoie le numéro complet avec l'indicatif (ex: +229...)
+        phone: phoneValue ? formatPhoneNumberIntl(phoneValue) : "", // Numéro formaté avec espaces (ex: +229 97 00 00 00)
         role: formData.get("role"),
         ticketType: formData.get("ticket"),
       }
