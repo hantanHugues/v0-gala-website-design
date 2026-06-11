@@ -3,10 +3,12 @@ import path from 'path';
 import { NextResponse } from 'next/server';
 
 const SPREADSHEET_ID = '18NcEHt8hHtNXB6WFQLC7_xJ411qriibOf4JMco7bYjY';
-const KEY_FILE_PATH = path.join(process.cwd(), 'gala-20ans-aiesec-benin-1db4533fe645.json');
 
 const auth = new google.auth.GoogleAuth({
-  keyFile: KEY_FILE_PATH,
+  credentials: {
+    client_email: process.env.GOOGLE_CLIENT_EMAIL,
+    private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+  },
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 });
 
