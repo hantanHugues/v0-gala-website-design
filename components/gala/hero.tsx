@@ -4,16 +4,7 @@ import dynamic from "next/dynamic"
 import { useEffect, useState } from "react"
 import { Countdown } from "./countdown"
 
-const Silk = dynamic(() => import("@/components/silk"), { ssr: false })
-const LightPillar = dynamic(() => import("@/components/LightPillar"), { ssr: false })
-
-/* Couleur Silk par thème :
-   Dark  → navy profond pour le fond sombre
-   Light → doré champagne chaud sur fond ivoire */
 import { useLanguage } from "@/lib/i18n"
-
-const SILK_DARK = "#1a3a7a"
-const SILK_LIGHT = "#ffffff"   // blanc pur, fond clair
 
 import { motion } from "framer-motion"
 import { useTheme } from "next-themes"
@@ -28,7 +19,6 @@ export function Hero() {
   }, [])
 
   const isDark = mounted ? resolvedTheme === "dark" : true
-  const silkColor = !isDark ? SILK_LIGHT : SILK_DARK
 
   const TypewriterText = ({ text, delay = 0 }: { text: string, delay?: number }) => (
     <motion.span
@@ -67,24 +57,39 @@ export function Hero() {
         className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden"
       >
         {mounted && isDark && (
-          <div className="absolute inset-0">
-            <Silk speed={2.5} scale={1} color={silkColor} noiseIntensity={1.5} rotation={1.1} />
+          <div className="absolute inset-0 w-full h-full bg-background">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              disablePictureInPicture
+              disableRemotePlayback
+              controlsList="nodownload nofullscreen noremoteplayback"
+              tabIndex={-1}
+              aria-hidden="true"
+              className="pointer-events-none h-full w-full object-cover object-center"
+            >
+              <source src="https://res.cloudinary.com/dqv5nasyj/video/upload/v1781196395/gala_v2/silk-1781194619889.mkv" />
+            </video>
           </div>
         )}
         {mounted && !isDark && (
-          <div className="absolute inset-0 w-full h-full">
-            <LightPillar
-              topColor="#D4AF37"
-              bottomColor="#037EF3"
-              intensity={1}
-              rotationSpeed={0.4}
-              interactive
-              glowAmount={0.005}
-              pillarWidth={8}
-              pillarHeight={0.4}
-              noiseIntensity={0}
-              pillarRotation={0}
-            />
+          <div className="absolute inset-0 w-full h-full bg-background">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              disablePictureInPicture
+              disableRemotePlayback
+              controlsList="nodownload nofullscreen noremoteplayback"
+              tabIndex={-1}
+              aria-hidden="true"
+              className="pointer-events-none h-full w-full object-cover object-center"
+            >
+              <source src="https://res.cloudinary.com/dqv5nasyj/video/upload/v1781196436/gala_v2/silk-1781196058717.mkv" />
+            </video>
           </div>
         )}
       </motion.div>

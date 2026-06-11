@@ -11,13 +11,13 @@ export function SiteFooter() {
             <div className="flex flex-col items-center">
               {/* Light Mode Logo */}
               <img
-                src="/images/Blue-Logo.png"
+                src="https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195380/gala_v2/Blue-Logo.png"
                 alt="AIESEC"
                 className="h-8 w-auto object-contain sm:h-10 dark:hidden"
               />
               {/* Dark Mode Logo */}
               <img
-                src="/images/image.png"
+                src="https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195445/gala_v2/image.png"
                 alt="AIESEC"
                 className="hidden h-8 w-auto object-contain sm:h-10 dark:block"
               />
@@ -31,7 +31,7 @@ export function SiteFooter() {
             <div className="flex items-center justify-center">
               {/* Light Mode Logo */}
               <Image
-                src="/images/20 ANS AIB.png"
+                src="https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195379/gala_v2/20_ANS_AIB.png"
                 alt="20 Ans AIESEC in Benin"
                 width={140}
                 height={70}
@@ -39,7 +39,7 @@ export function SiteFooter() {
               />
               {/* Dark Mode Logo */}
               <Image
-                src="/images/20 ANS AIB 1.png"
+                src="https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195377/gala_v2/20_ANS_AIB_1.png"
                 alt="20 Ans AIESEC in Benin"
                 width={140}
                 height={70}

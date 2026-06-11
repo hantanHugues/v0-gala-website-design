@@ -15,7 +15,7 @@ export function Venue() {
         <Reveal variant="fade-right" threshold={0.05}>
           <div className="relative min-h-[260px] sm:min-h-[420px] lg:min-h-full">
             <img
-              src="/images/galerie-7-6-1-490x325.jpg"
+              src="https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195443/gala_v2/galerie-7-6-1-490x325.jpg"
               alt="Salle du gala à Cotonou"
               className="size-full object-cover"
             />

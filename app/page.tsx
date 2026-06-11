@@ -1,4 +1,3 @@
-import { SiteNav } from "@/components/gala/site-nav"
 import { Hero } from "@/components/gala/hero"
 import { About } from "@/components/gala/about"
 import { Heritage } from "@/components/gala/heritage"
@@ -39,7 +38,6 @@ const L = {
 export default function Page() {
   return (
     <main className="bg-background">
-      <SiteNav />
       <Hero />
       <SectionBridge from={D.hero} to={D.about} lightFrom={L.hero} lightTo={L.about} height={160} />
       <About />

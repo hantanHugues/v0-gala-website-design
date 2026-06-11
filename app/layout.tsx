@@ -28,6 +28,7 @@ export const metadata: Metadata = {
 
 import { LanguageProvider } from "@/lib/i18n";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SiteNav } from "@/components/gala/site-nav";
 
 export default function RootLayout({
   children,
@@ -43,6 +44,7 @@ export default function RootLayout({
       <body suppressHydrationWarning className="antialiased bg-background font-sans">
         <ThemeProvider>
           <LanguageProvider>
+            <SiteNav />
             {children}
           </LanguageProvider>
         </ThemeProvider>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import { Menu, X, Sun, Moon, Monitor } from "lucide-react"
+import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { useLanguage } from "@/lib/i18n"
 import { TranslationKey } from "@/lib/translations"
@@ -16,11 +17,10 @@ export function SiteNav() {
   const [open, setOpen] = useState(false)
 
   const links: { href: string; labelKey: TranslationKey }[] = [
-    { href: "#apropos", labelKey: "nav.about" },
-    { href: "#heritage", labelKey: "nav.heritage" },
-    { href: "#programme", labelKey: "nav.program" },
-    { href: "#lieu", labelKey: "nav.venue" },
-    { href: "#invitation", labelKey: "nav.reservation" },
+    { href: "/#apropos", labelKey: "nav.about" },
+    { href: "/#heritage", labelKey: "nav.heritage" },
+    { href: "/#programme", labelKey: "nav.program" },
+    { href: "/#lieu", labelKey: "nav.venue" },
   ]
 
   useEffect(() => {
@@ -42,10 +42,10 @@ export function SiteNav() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6">
         {/* Logo — centered on mobile via absolute trick */}
-        <a href="#" className="flex items-center">
+        <Link href="/" className="flex items-center">
           {/* Light Mode Logo */}
           <Image
-            src="/images/20 ANS AIB.png"
+            src="https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195379/gala_v2/20_ANS_AIB.png"
             alt="20 Ans AIESEC in Benin"
             width={120}
             height={50}
@@ -54,24 +54,24 @@ export function SiteNav() {
           />
           {/* Dark Mode Logo */}
           <Image
-            src="/images/20 ANS AIB 1.png"
+            src="https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195377/gala_v2/20_ANS_AIB_1.png"
             alt="20 Ans AIESEC in Benin"
             width={120}
             height={50}
             className="hidden h-10 w-auto object-contain sm:h-12 dark:block"
             priority
           />
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-9 md:flex">
           {links.map((l) => (
             <li key={l.href}>
-              <a
+              <Link
                 href={l.href}
                 className="text-xs uppercase tracking-[0.18em] text-foreground/70 dark:text-cream/70 transition-colors hover:text-gold"
               >
                 {t(l.labelKey)}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -121,12 +121,12 @@ export function SiteNav() {
             </button>
           </div>
 
-          <a
-            href="#invitation"
+          <Link
+            href="/#invitation"
             className="hidden border border-gold px-5 py-2.5 text-xs uppercase tracking-[0.18em] text-gold transition-colors hover:bg-gold hover:text-primary-foreground md:inline-block"
           >
             {t("nav.invite_button")}
-          </a>
+          </Link>
         </div>
 
         <button
@@ -171,25 +171,26 @@ export function SiteNav() {
           <ul className="flex flex-col gap-1">
             {links.map((l) => (
               <li key={l.href}>
-                <a
+                <Link
                   href={l.href}
                   onClick={() => setOpen(false)}
                   className="flex items-center justify-between py-3 text-sm uppercase tracking-[0.18em] text-foreground/80 dark:text-cream/80 transition-colors hover:text-gold"
                 >
-                  {l.label}
+                  {/* Note: changed l.label to t(l.labelKey) since l.label wasn't in the type anymore */}
+                  {t(l.labelKey)}
                   <span className="h-px w-6 bg-gold/30" />
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
 
-          <a
-            href="#invitation"
+          <Link
+            href="/#invitation"
             onClick={() => setOpen(false)}
             className="mt-6 flex w-full items-center justify-center border border-gold py-3 text-xs uppercase tracking-[0.18em] text-gold transition-colors hover:bg-gold/10"
           >
             Demander une invitation
-          </a>
+          </Link>
         </div>
       </div>
     </header>

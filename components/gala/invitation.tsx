@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { useState } from "react"
+import 'react-phone-number-input/style.css'
 import { Check, User, Mail, Phone, Briefcase, Users } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 import { useLanguage } from "@/lib/i18n"
@@ -13,13 +14,60 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
+import { PhoneInput } from "@/components/ui/phone-input"
+import { isValidPhoneNumber } from "react-phone-number-input"
+
 export function Invitation() {
   const { t } = useLanguage()
   const [submitted, setSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("")
+  const [phoneValue, setPhoneValue] = useState<string | undefined>("")
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    setSubmitted(true)
+    setIsLoading(true)
+    setError("")
+
+    try {
+      const formData = new FormData(e.currentTarget)
+      const data = {
+        firstName: formData.get("firstName"),
+        lastName: formData.get("lastName"),
+        email: formData.get("email"),
+        phone: formData.get("phone"),
+        role: formData.get("role"),
+        ticketType: formData.get("ticket"),
+      }
+
+      if (!data.role || !data.ticketType) {
+        throw new Error("Veuillez sélectionner un statut et un type de réservation.")
+      }
+
+      if (!phoneValue || !isValidPhoneNumber(phoneValue)) {
+        throw new Error("Le numéro de téléphone saisi est invalide pour le pays sélectionné.")
+      }
+
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+
+      const result = await res.json()
+
+      if (!res.ok) {
+        throw new Error(result.error || "Une erreur est survenue lors de l'inscription.")
+      }
+
+      setSubmitted(true)
+    } catch (err: any) {
+      setError(err.message)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -71,8 +119,19 @@ export function Invitation() {
                     <div className="sm:col-span-12">
                       <ElegantInput placeholder={t("invitation.form.email")} name="email" type="email" icon={Mail} />
                     </div>
-                    <div className="sm:col-span-12">
-                      <ElegantInput placeholder={t("invitation.form.phone")} name="phone" type="tel" icon={Phone} />
+                    <div className="sm:col-span-12" suppressHydrationWarning>
+                      <div className="relative flex items-center w-full h-[54px] rounded-xl border border-border bg-transparent transition-all focus-within:border-royal focus-within:ring-1 focus-within:ring-royal">
+                        <PhoneInput
+                          placeholder={t("invitation.form.phone")}
+                          value={phoneValue}
+                          onChange={setPhoneValue}
+                          defaultCountry="BJ"
+                          international={false}
+                          className="w-full h-full"
+                          name="phone"
+                          required
+                        />
+                      </div>
                     </div>
                     <div className="sm:col-span-12" suppressHydrationWarning>
                       <div className="relative">
@@ -104,9 +163,7 @@ export function Invitation() {
                             <SelectValue placeholder={t("invitation.form.ticket_type")} />
                           </SelectTrigger>
                           <SelectContent position="popper" sideOffset={4}>
-                            <SelectItem value="standard">{t("invitation.form.ticket.standard")}</SelectItem>
-                            <SelectItem value="vip">{t("invitation.form.ticket.vip")}</SelectItem>
-                            <SelectItem value="soutien">{t("invitation.form.ticket.soutien")}</SelectItem>
+                            <SelectItem value="solo">{t("invitation.form.ticket.solo")}</SelectItem>
                             <SelectItem value="couple">{t("invitation.form.ticket.couple")}</SelectItem>
                           </SelectContent>
                         </Select>
@@ -115,11 +172,17 @@ export function Invitation() {
                   </div>
 
                   <div className="pt-2">
+                    {error && (
+                      <div className="mb-4 rounded-lg bg-red-500/10 p-3 text-center text-sm text-red-500">
+                        {error}
+                      </div>
+                    )}
                     <button
                       type="submit"
-                      className="w-full rounded-xl border border-[#0266c8]/50 bg-[#0266c8] bg-[linear-gradient(110deg,#0266c8,45%,#3b99f6,55%,#0266c8)] bg-[length:200%_100%] py-4 text-sm font-semibold text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_6px_16px_rgba(2,102,200,0.3)] transition-all duration-500 hover:bg-[position:100%_0] active:scale-[0.98]"
+                      disabled={isLoading}
+                      className="w-full rounded-xl border border-[#0266c8]/50 bg-[#0266c8] bg-[linear-gradient(110deg,#0266c8,45%,#3b99f6,55%,#0266c8)] bg-[length:200%_100%] py-4 text-sm font-semibold text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_6px_16px_rgba(2,102,200,0.3)] transition-all duration-500 hover:bg-[position:100%_0] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                      {t("invitation.form.submit")}
+                      {isLoading ? "Envoi en cours..." : t("invitation.form.submit")}
                     </button>
                     <p className="mt-4 text-center text-xs text-muted-foreground">
                       {t("invitation.form.hint")}

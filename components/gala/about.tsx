@@ -40,7 +40,7 @@ export function About() {
             <div className="relative lg:pb-8">
               <div className="overflow-hidden border border-royal/20">
                 <img
-                  src="/images/MVIMG_20260503_024602_1.jpg"
+                  src="https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195449/gala_v2/MVIMG_20260503_024602_1.jpg"
                   alt="Membres AIESEC in Benin lors d'un événement"
                   className="w-full object-cover aspect-[4/3] sm:aspect-[3/2] lg:aspect-[4/5]"
                 />

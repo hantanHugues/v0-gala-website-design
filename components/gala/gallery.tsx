@@ -3,10 +3,11 @@
 import { useState, useCallback, useEffect, useRef } from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import Image from "next/image"
+import Link from "next/link"
 import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 
-type Photo = {
+export type Photo = {
   src: string
   alt: string
   edition: string
@@ -14,243 +15,243 @@ type Photo = {
   span: string
 }
 
-const photos: Photo[] = [
+export const photos: Photo[] = [
   {
-    src: "/images/Gala_ancienne_edition (1).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195381/gala_v2/Gala_ancienne_edition_1.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-2 row-span-2"
   },
   {
-    src: "/images/Gala_ancienne_edition (2).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195398/gala_v2/Gala_ancienne_edition_2.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (3).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195409/gala_v2/Gala_ancienne_edition_3.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (4).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195411/gala_v2/Gala_ancienne_edition_4.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-2"
   },
   {
-    src: "/images/Gala_ancienne_edition (5).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195412/gala_v2/Gala_ancienne_edition_5.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-2 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (6).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195413/gala_v2/Gala_ancienne_edition_6.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (7).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195415/gala_v2/Gala_ancienne_edition_7.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-2 row-span-2"
   },
   {
-    src: "/images/Gala_ancienne_edition (8).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195417/gala_v2/Gala_ancienne_edition_8.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (9).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195418/gala_v2/Gala_ancienne_edition_9.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-2 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (10).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195383/gala_v2/Gala_ancienne_edition_10.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-2 row-span-2"
   },
   {
-    src: "/images/Gala_ancienne_edition (11).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195385/gala_v2/Gala_ancienne_edition_11.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (12).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195386/gala_v2/Gala_ancienne_edition_12.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (13).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195388/gala_v2/Gala_ancienne_edition_13.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-2"
   },
   {
-    src: "/images/Gala_ancienne_edition (14).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195389/gala_v2/Gala_ancienne_edition_14.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-2 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (15).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195391/gala_v2/Gala_ancienne_edition_15.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (16).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195393/gala_v2/Gala_ancienne_edition_16.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-2 row-span-2"
   },
   {
-    src: "/images/Gala_ancienne_edition (17).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195394/gala_v2/Gala_ancienne_edition_17.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (18).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195396/gala_v2/Gala_ancienne_edition_18.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-2 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (19).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195397/gala_v2/Gala_ancienne_edition_19.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-2 row-span-2"
   },
   {
-    src: "/images/Gala_ancienne_edition (20).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195399/gala_v2/Gala_ancienne_edition_20.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (21).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195400/gala_v2/Gala_ancienne_edition_21.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (22).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195401/gala_v2/Gala_ancienne_edition_22.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-2"
   },
   {
-    src: "/images/Gala_ancienne_edition (23).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195402/gala_v2/Gala_ancienne_edition_23.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-2 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (24).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195403/gala_v2/Gala_ancienne_edition_24.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (25).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195405/gala_v2/Gala_ancienne_edition_25.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-2 row-span-2"
   },
   {
-    src: "/images/Gala_ancienne_edition (26).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195406/gala_v2/Gala_ancienne_edition_26.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (27).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195407/gala_v2/Gala_ancienne_edition_27.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-2 row-span-1"
   },
   {
-    src: "/images/Gala_ancienne_edition (28).jpeg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195408/gala_v2/Gala_ancienne_edition_28.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-2 row-span-2"
   },
   {
-    src: "/images/gala_archive (1).jpg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195419/gala_v2/gala_archive_1.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/gala_archive (2).jpg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195432/gala_v2/gala_archive_2.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/gala_archive (3).jpg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195436/gala_v2/gala_archive_3.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-2"
   },
   {
-    src: "/images/gala_archive (4).jpg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195437/gala_v2/gala_archive_4.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-2 row-span-1"
   },
   {
-    src: "/images/gala_archive (5).jpg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195438/gala_v2/gala_archive_5.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/gala_archive (6).jpg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195439/gala_v2/gala_archive_6.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-2 row-span-2"
   },
   {
-    src: "/images/gala_archive (7).jpg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195440/gala_v2/gala_archive_7.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/gala_archive (8).jpg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195441/gala_v2/gala_archive_8.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-2 row-span-1"
   },
   {
-    src: "/images/gala_archive (9).jpg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195442/gala_v2/gala_archive_9.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-2 row-span-2"
   },
   {
-    src: "/images/gala_archive (10).jpg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195420/gala_v2/gala_archive_10.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/gala_archive (11).jpg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195422/gala_v2/gala_archive_11.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-1"
   },
   {
-    src: "/images/gala_archive (12).jpg",
+    src: "https://res.cloudinary.com/dqv5nasyj/image/upload/v1781195423/gala_v2/gala_archive_12.jpg",
     alt: "AIESEC in Benin - Gala Archives",
     edition: "Éditions passées",
     span: "col-span-1 row-span-2"
@@ -333,8 +334,7 @@ function MobileCarousel({ onOpen }: { onOpen: (i: number) => void }) {
 
 /* ── Desktop Editorial Grid ──────────────────────────────── */
 function DesktopGrid({ onOpen }: { onOpen: (i: number) => void }) {
-  const [showAll, setShowAll] = useState(false)
-  const visiblePhotos = showAll ? photos : photos.slice(0, 6)
+  const visiblePhotos = photos.slice(0, 6)
 
   return (
     <div>
@@ -378,15 +378,14 @@ function DesktopGrid({ onOpen }: { onOpen: (i: number) => void }) {
           </button>
         ))}
       </div>
-      
-      {!showAll && photos.length > 6 && (
+      {photos.length > 6 && (
         <div className="mt-12 flex justify-center pb-4">
-          <button
-            onClick={() => setShowAll(true)}
+          <Link
+            href="/galerie"
             className="rounded-full border border-gold px-8 py-3 text-xs uppercase tracking-[0.2em] text-gold transition-colors hover:bg-gold hover:text-background"
           >
             Voir plus de photos
-          </button>
+          </Link>
         </div>
       )}
     </div>
